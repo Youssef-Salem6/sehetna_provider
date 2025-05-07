@@ -7,6 +7,7 @@ import 'package:sehetna_provider/fetures/auth/view/login_view.dart';
 import 'package:sehetna_provider/fetures/profile/manager/services/email_luancher.dart';
 import 'package:sehetna_provider/fetures/profile/view/change_paswword_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/edit_profile_view.dart';
+import 'package:sehetna_provider/fetures/profile/view/feedBasks_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/CustomTxt.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/bloc_list.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/language_bottom_sheet.dart';
@@ -93,7 +94,13 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                         "assets/images/Icons/ic_round-arrow-left.svg"),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FeedbasksView(),
+                          ));
+                    },
                     leading: SvgPicture.asset(
                       "assets/images/Icons/material-symbols_feedback-rounded.svg",
                     ),
