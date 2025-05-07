@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:sehetna_provider/core/Colors.dart';
+import 'package:sehetna_provider/fetures/profile/models/feedBack_model.dart';
 
 class FeedbackCustomCard extends StatelessWidget {
-  final String img, comment, clientName, rate, date;
+  final FeedbackModel feedbackModel;
   const FeedbackCustomCard({
     super.key,
-    required this.img,
-    required this.comment,
-    required this.clientName,
-    required this.rate,
-    required this.date,
+    required this.feedbackModel,
   });
 
   @override
@@ -39,12 +37,12 @@ class FeedbackCustomCard extends StatelessWidget {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          img,
+                          "assets/images/Icons/solar_stars-bold.svg",
                           width: 30,
                         ),
                         const Gap(10),
                         Text(
-                          rate,
+                          feedbackModel.rating!,
                           style: const TextStyle(
                               color: kSecondaryColor,
                               fontSize: 16,
@@ -56,7 +54,8 @@ class FeedbackCustomCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  date,
+                  DateFormat("MMM dd, yyyy - hh:mm a")
+                      .format(DateTime.parse(feedbackModel.createdAt!)),
                   style: TextStyle(
                       color: kSecondaryColor.withOpacity(0.6),
                       fontWeight: FontWeight.w600),
@@ -67,14 +66,14 @@ class FeedbackCustomCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              clientName,
+              feedbackModel.customerName!,
               style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              comment,
+              feedbackModel.comment!,
               style: TextStyle(
                 color: kSecondaryColor.withOpacity(0.7),
                 fontWeight: FontWeight.w500,

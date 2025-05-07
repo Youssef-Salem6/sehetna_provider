@@ -6,6 +6,7 @@ import 'package:sehetna_provider/fetures/auth/manager/logout/log_out_cubit.dart'
 import 'package:sehetna_provider/fetures/auth/view/login_view.dart';
 import 'package:sehetna_provider/fetures/profile/manager/services/email_luancher.dart';
 import 'package:sehetna_provider/fetures/profile/view/change_paswword_view.dart';
+import 'package:sehetna_provider/fetures/profile/view/complaint_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/edit_profile_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/feedBasks_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/CustomTxt.dart';
@@ -109,7 +110,13 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                         "assets/images/Icons/ic_round-arrow-left.svg"),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ComplaintView(),
+                          ));
+                    },
                     leading: SvgPicture.asset(
                       "assets/images/Icons/material-symbols_rate-review.svg",
                     ),

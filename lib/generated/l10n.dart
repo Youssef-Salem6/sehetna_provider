@@ -824,6 +824,71 @@ class S {
       args: [],
     );
   }
+
+  /// `Response`
+  String get responseTitle {
+    return Intl.message('Response', name: 'responseTitle', desc: '', args: []);
+  }
+
+  /// `No response yet`
+  String get noResponseText {
+    return Intl.message(
+      'No response yet',
+      name: 'noResponseText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resolved`
+  String get statusResolved {
+    return Intl.message('Resolved', name: 'statusResolved', desc: '', args: []);
+  }
+
+  /// `Closed`
+  String get statusClosed {
+    return Intl.message('Closed', name: 'statusClosed', desc: '', args: []);
+  }
+
+  /// `Open`
+  String get statusOpen {
+    return Intl.message('Open', name: 'statusOpen', desc: '', args: []);
+  }
+
+  /// `In Progress`
+  String get statusInProgress {
+    return Intl.message(
+      'In Progress',
+      name: 'statusInProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get statusPending {
+    return Intl.message('Pending', name: 'statusPending', desc: '', args: []);
+  }
+
+  /// `No Subject`
+  String get noSubjectText {
+    return Intl.message(
+      'No Subject',
+      name: 'noSubjectText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No description provided`
+  String get noDescriptionText {
+    return Intl.message(
+      'No description provided',
+      name: 'noDescriptionText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

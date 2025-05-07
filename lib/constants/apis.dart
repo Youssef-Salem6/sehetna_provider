@@ -25,6 +25,8 @@ String resetPasswordApi = "$resetPasswordBase/reset";
 String uploadDocsApi = "$providerBase/upload-document";
 String requiredDocsApi = "$providerBase/required-documents";
 String decumentsStatusApi = "$providerBase/document-status";
+String getFeedBacksApi = "$providerBase/feedbacks";
+String getComplaintApi = "$providerBase/feedbacks";
 
 String updateProfileApi = "$userBase/update-profile";
 String updateProfileImageApi = "$userBase/update-profile-image";

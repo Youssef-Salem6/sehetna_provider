@@ -94,6 +94,15 @@
     "providerGain" : "Provider Gain",
     "sehetnaGain" : "Sehetna Gain",
     "ongoingRequests" : "Ongoing Request",
-    "showDetails" : "show Details"
+    "showDetails" : "show Details",
+    "responseTitle": "Response",
+    "noResponseText": "No response yet",
+    "statusResolved": "Resolved",
+    "statusClosed": "Closed",
+    "statusOpen": "Open",
+    "statusInProgress": "In Progress",
+    "statusPending": "Pending",
+    "noSubjectText": "No Subject",
+    "noDescriptionText": "No description provided"
 
 }

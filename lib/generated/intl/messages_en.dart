@@ -118,6 +118,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "newPasswordInfo": MessageLookupByLibrary.simpleMessage(
       "Create a new password",
     ),
+    "noDescriptionText": MessageLookupByLibrary.simpleMessage(
+      "No description provided",
+    ),
+    "noResponseText": MessageLookupByLibrary.simpleMessage("No response yet"),
+    "noSubjectText": MessageLookupByLibrary.simpleMessage("No Subject"),
     "oldPassword": MessageLookupByLibrary.simpleMessage("Old Password"),
     "onBoarding1Title": MessageLookupByLibrary.simpleMessage(
       "Join Our Network of Healthcare Providers",
@@ -157,6 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
     "requests": MessageLookupByLibrary.simpleMessage("Requests"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "responseTitle": MessageLookupByLibrary.simpleMessage("Response"),
     "sehetnaGain": MessageLookupByLibrary.simpleMessage("Sehetna Gain"),
     "selectUserType": MessageLookupByLibrary.simpleMessage("Select User Type"),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Reset Link"),
@@ -179,6 +185,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "signUpWith": MessageLookupByLibrary.simpleMessage("or signup with"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "statusClosed": MessageLookupByLibrary.simpleMessage("Closed"),
+    "statusInProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
+    "statusOpen": MessageLookupByLibrary.simpleMessage("Open"),
+    "statusPending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "statusResolved": MessageLookupByLibrary.simpleMessage("Resolved"),
     "todayGain": MessageLookupByLibrary.simpleMessage("Today revenue"),
     "underReview": MessageLookupByLibrary.simpleMessage("Under Review"),
     "uploadDocuments": MessageLookupByLibrary.simpleMessage("Upload Documents"),
