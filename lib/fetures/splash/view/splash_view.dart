@@ -88,7 +88,7 @@ class _SplashViewState extends State<SplashView> {
           decoration: const BoxDecoration(
             gradient: RadialGradient(
               center: Alignment.center, // Center the gradient
-              colors: [kPrimaryColor, Color(0xff586713), kSecondaryColor],
+              colors: bgColorList,
               stops: [0.05, 0.6, 3], // Adjust the stops for smooth transitions
             ),
           ),

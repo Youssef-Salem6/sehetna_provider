@@ -92,11 +92,7 @@ class _LoginViewState extends State<LoginView> {
                   decoration: const BoxDecoration(
                     gradient: RadialGradient(
                       center: Alignment.center, // Center the gradient
-                      colors: [
-                        kPrimaryColor,
-                        Color(0xff586713),
-                        kSecondaryColor,
-                      ],
+                      colors: bgColorList,
                       stops: [
                         0.05,
                         0.6,

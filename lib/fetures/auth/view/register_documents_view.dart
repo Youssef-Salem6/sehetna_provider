@@ -146,11 +146,7 @@ class _RegisterDocumentsViewState extends State<RegisterDocumentsView> {
                       decoration: const BoxDecoration(
                         gradient: RadialGradient(
                           center: Alignment.center,
-                          colors: [
-                            kPrimaryColor,
-                            Color(0xff586713),
-                            kSecondaryColor,
-                          ],
+                          colors: bgColorList,
                           stops: [0.1, 0.4, 0.8],
                         ),
                       ),
