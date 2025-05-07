@@ -724,6 +724,106 @@ class S {
   String get complaints {
     return Intl.message('Complaints', name: 'complaints', desc: '', args: []);
   }
+
+  /// `Hello Dr,`
+  String get hello {
+    return Intl.message('Hello Dr,', name: 'hello', desc: '', args: []);
+  }
+
+  /// `Welcome back`
+  String get welcomeBack {
+    return Intl.message(
+      'Welcome back',
+      name: 'welcomeBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Sehetna App`
+  String get welcomeToSehetnaApp {
+    return Intl.message(
+      'Welcome to Sehetna App',
+      name: 'welcomeToSehetnaApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ready to receive requests`
+  String get readyToReceiveRequests {
+    return Intl.message(
+      'ready to receive requests',
+      name: 'readyToReceiveRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept home visits and nursing care requests from nearby patients.`
+  String get homeContainerDescription {
+    return Intl.message(
+      'Accept home visits and nursing care requests from nearby patients.',
+      name: 'homeContainerDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Provider Stats`
+  String get providerStats {
+    return Intl.message(
+      'Provider Stats',
+      name: 'providerStats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today revenue`
+  String get todayGain {
+    return Intl.message('Today revenue', name: 'todayGain', desc: '', args: []);
+  }
+
+  /// `Provider Gain`
+  String get providerGain {
+    return Intl.message(
+      'Provider Gain',
+      name: 'providerGain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sehetna Gain`
+  String get sehetnaGain {
+    return Intl.message(
+      'Sehetna Gain',
+      name: 'sehetnaGain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ongoing Request`
+  String get ongoingRequests {
+    return Intl.message(
+      'Ongoing Request',
+      name: 'ongoingRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `show Details`
+  String get showDetails {
+    return Intl.message(
+      'show Details',
+      name: 'showDetails',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -71,7 +71,7 @@ class SehetnaApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          theme: ThemeData(fontFamily: "inter"),
+          theme: ThemeData(fontFamily: "UltimaPro"),
           home: const SplashView(),
           debugShowCheckedModeBanner: false,
         );

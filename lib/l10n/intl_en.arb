@@ -83,6 +83,17 @@
     "passwordChangedSuccessfully" : "Password changed successfully",
     "analytics" : "Analytics",
     "feedback" : "Feedback",
-    "complaints" : "Complaints"
+    "complaints" : "Complaints",
+    "hello" : "Hello Dr,",
+    "welcomeBack" : "Welcome back",
+    "welcomeToSehetnaApp" : "Welcome to Sehetna App",
+    "readyToReceiveRequests" : "ready to receive requests",
+    "homeContainerDescription" : "Accept home visits and nursing care requests from nearby patients.",
+    "providerStats" : "Provider Stats",
+    "todayGain" : "Today revenue",
+    "providerGain" : "Provider Gain",
+    "sehetnaGain" : "Sehetna Gain",
+    "ongoingRequests" : "Ongoing Request",
+    "showDetails" : "show Details"
 
 }

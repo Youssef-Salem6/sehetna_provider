@@ -82,8 +82,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
+    "hello": MessageLookupByLibrary.simpleMessage("Hello Dr,"),
     "helpAndSupport": MessageLookupByLibrary.simpleMessage("Help & Support"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "homeContainerDescription": MessageLookupByLibrary.simpleMessage(
+      "Accept home visits and nursing care requests from nearby patients.",
+    ),
     "inValidMailWarning": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email",
     ),
@@ -133,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "onBoarding3description": MessageLookupByLibrary.simpleMessage(
       "Sign up, verify your details, and start accepting home visit requests.",
     ),
+    "ongoingRequests": MessageLookupByLibrary.simpleMessage("Ongoing Request"),
     "orLoginWith": MessageLookupByLibrary.simpleMessage("or login with"),
     "organizational": MessageLookupByLibrary.simpleMessage("Organizational"),
     "otpInfo": MessageLookupByLibrary.simpleMessage(
@@ -143,10 +148,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "phone": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "providerGain": MessageLookupByLibrary.simpleMessage("Provider Gain"),
+    "providerStats": MessageLookupByLibrary.simpleMessage("Provider Stats"),
     "rateUs": MessageLookupByLibrary.simpleMessage("Rate Us"),
+    "readyToReceiveRequests": MessageLookupByLibrary.simpleMessage(
+      "ready to receive requests",
+    ),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
     "requests": MessageLookupByLibrary.simpleMessage("Requests"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "sehetnaGain": MessageLookupByLibrary.simpleMessage("Sehetna Gain"),
     "selectUserType": MessageLookupByLibrary.simpleMessage("Select User Type"),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Reset Link"),
     "shortAddressWarning": MessageLookupByLibrary.simpleMessage(
@@ -164,9 +175,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "shortPhoneWarning": MessageLookupByLibrary.simpleMessage(
       "Phone Number must be at least 11 Numbers long",
     ),
+    "showDetails": MessageLookupByLibrary.simpleMessage("show Details"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "signUpWith": MessageLookupByLibrary.simpleMessage("or signup with"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+    "todayGain": MessageLookupByLibrary.simpleMessage("Today revenue"),
     "underReview": MessageLookupByLibrary.simpleMessage("Under Review"),
     "uploadDocuments": MessageLookupByLibrary.simpleMessage("Upload Documents"),
     "uploadHere": MessageLookupByLibrary.simpleMessage("Upload Here"),
@@ -176,6 +189,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "userType": MessageLookupByLibrary.simpleMessage("User Type"),
     "userTypeWarning": MessageLookupByLibrary.simpleMessage(
       "Please select your user type",
+    ),
+    "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome back"),
+    "welcomeToSehetnaApp": MessageLookupByLibrary.simpleMessage(
+      "Welcome to Sehetna App",
     ),
   };
 }
