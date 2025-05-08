@@ -9,6 +9,7 @@ String authBaseIrl = "$baseUrl/auth";
 String resetPasswordBase = "$baseUrl/reset-password";
 String providerBase = "$baseUrl/provider";
 String userBase = "$baseUrl/user";
+String requestsBase = "$baseUrl/requests";
 String imagesBaseUrl = "https://api.sehtnaa.com/storage";
 
 //Auth
@@ -26,7 +27,7 @@ String uploadDocsApi = "$providerBase/upload-document";
 String requiredDocsApi = "$providerBase/required-documents";
 String decumentsStatusApi = "$providerBase/document-status";
 String getFeedBacksApi = "$providerBase/feedbacks";
-String getComplaintApi = "$providerBase/feedbacks";
+String getComplaintApi = "$providerBase/complaints";
 
 String updateProfileApi = "$userBase/update-profile";
 String updateProfileImageApi = "$userBase/update-profile-image";

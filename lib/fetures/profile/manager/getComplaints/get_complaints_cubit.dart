@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
@@ -9,8 +11,16 @@ class GetComplaintsCubit extends Cubit<GetComplaintsState> {
   List complaints = [];
 
   getComplaints() async {
-    Uri url = Uri.parse(getComplaintApi);
+    emit(GetComplaintsLoading());
+    Uri url = Uri.parse("https://api.sehtnaa.com/api/provider/complaints");
     var response = await http.get(url, headers: header);
-    if (response.statusCode == 200) {}
+    if (response.statusCode == 200) {
+      print(response.body);
+      complaints = jsonDecode(response.body)["data"]["complaints"];
+      emit(GetComplaintsSuccess());
+    } else {
+      emit(GetComplaintsFailure(
+          errorMessage: jsonDecode(response.body)["message"]));
+    }
   }
 }

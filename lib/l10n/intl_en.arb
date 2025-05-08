@@ -103,6 +103,7 @@
     "statusInProgress": "In Progress",
     "statusPending": "Pending",
     "noSubjectText": "No Subject",
-    "noDescriptionText": "No description provided"
+    "noDescriptionText": "No description provided",
+    "history" : "History"
 
 }

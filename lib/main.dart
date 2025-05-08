@@ -5,7 +5,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sehetna_provider/fetures/auth/manager/documentsStatus/documents_status_cubit.dart';
 import 'package:sehetna_provider/fetures/auth/manager/requiredDocuments/required_documents_cubit.dart';
 import 'package:sehetna_provider/fetures/auth/manager/uploadDecuments/upload_documents_cubit.dart';
+import 'package:sehetna_provider/fetures/profile/manager/getComplaints/get_complaints_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/getFeedbacks/get_feedbacks_cubit.dart';
+import 'package:sehetna_provider/fetures/profile/manager/getRequests/get_requests_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/language/change_language_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/services/email_luancher.dart';
 import 'package:sehetna_provider/fetures/splash/view/splash_view.dart';
@@ -30,6 +32,8 @@ void main(List<String> args) async {
       BlocProvider(create: (context) => UploadDocumentsCubit()),
       BlocProvider(create: (context) => DocumentsStatusCubit()),
       BlocProvider(create: (context) => GetFeedbacksCubit()),
+      BlocProvider(create: (context) => GetComplaintsCubit()),
+      BlocProvider(create: (context) => GetRequestsCubit()),
       BlocProvider(
         create: (context) => ChangeLanguageCubit()
           // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member

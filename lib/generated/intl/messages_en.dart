@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "hello": MessageLookupByLibrary.simpleMessage("Hello Dr,"),
     "helpAndSupport": MessageLookupByLibrary.simpleMessage("Help & Support"),
+    "history": MessageLookupByLibrary.simpleMessage("History"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "homeContainerDescription": MessageLookupByLibrary.simpleMessage(
       "Accept home visits and nursing care requests from nearby patients.",

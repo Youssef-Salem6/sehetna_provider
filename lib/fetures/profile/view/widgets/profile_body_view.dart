@@ -9,6 +9,7 @@ import 'package:sehetna_provider/fetures/profile/view/change_paswword_view.dart'
 import 'package:sehetna_provider/fetures/profile/view/complaint_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/edit_profile_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/feedBasks_view.dart';
+import 'package:sehetna_provider/fetures/profile/view/history_view.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/CustomTxt.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/bloc_list.dart';
 import 'package:sehetna_provider/fetures/profile/view/widgets/language_bottom_sheet.dart';
@@ -121,6 +122,21 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                       "assets/images/Icons/material-symbols_rate-review.svg",
                     ),
                     title: CustomTxt(txt: S.of(context).complaints, size: 16),
+                    trailing: SvgPicture.asset(
+                        "assets/images/Icons/ic_round-arrow-left.svg"),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HistoryView(),
+                          ));
+                    },
+                    leading: SvgPicture.asset(
+                      "assets/images/Icons/fluent_clock-bill-16-filled.svg",
+                    ),
+                    title: CustomTxt(txt: S.of(context).history, size: 16),
                     trailing: SvgPicture.asset(
                         "assets/images/Icons/ic_round-arrow-left.svg"),
                   ),
