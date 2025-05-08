@@ -25,6 +25,7 @@ class GetRequestsCubit extends Cubit<GetRequestsState> {
         emit(GetRequestsEmpty());
       } else {
         emit(GetRequestsSuccess());
+        print(response.body);
       }
     } else {
       emit(GetRequestsFailure(error: jsonDecode(response.body)["message"]));

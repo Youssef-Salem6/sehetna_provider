@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:sehetna_provider/core/Colors.dart';
+import 'package:sehetna_provider/fetures/profile/models/requests_model.dart';
 import 'package:sehetna_provider/generated/l10n.dart';
 
 class CustomRequestCard extends StatelessWidget {
-  
-  const CustomRequestCard({super.key});
+  final RequestsModel requestsModel;
+
+  const CustomRequestCard({
+    super.key,
+    required this.requestsModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +31,16 @@ class CustomRequestCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Provider Name",
-                    style: TextStyle(
+                  Text(
+                    requestsModel.customerName!,
+                    style: const TextStyle(
                       color: kPrimaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const Gap(2),
                   Text(
-                    "Category",
+                    requestsModel.categoryName!,
                     style: TextStyle(
                       color: kPrimaryColor.withOpacity(0.4),
                       fontWeight: FontWeight.bold,
@@ -42,7 +48,8 @@ class CustomRequestCard extends StatelessWidget {
                   ),
                   const Gap(2),
                   Text(
-                    "March 5, 10:00 AM",
+                    DateFormat("MMM dd, yyyy - hh:mm a")
+                        .format(DateTime.parse(requestsModel.createdAt!)),
                     style: TextStyle(
                       color: kPrimaryColor.withOpacity(0.4),
                       fontWeight: FontWeight.bold,

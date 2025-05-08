@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sehetna_provider/constants/apis.dart';
 import 'package:sehetna_provider/core/custom_image_row.dart';
-import 'package:sehetna_provider/fetures/home/view/widgets/custom_request_card.dart';
 import 'package:sehetna_provider/fetures/home/view/widgets/home_bloc_list.dart';
 import 'package:sehetna_provider/fetures/home/view/widgets/home_container_view.dart';
 import 'package:sehetna_provider/fetures/home/view/widgets/provider_stats_container.dart';
@@ -34,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
             const ProviderStatsContainer(),
             Gap(size.height * 0.02),
             HomeBlocList(title: S.of(context).ongoingRequests, children: const [
-              CustomRequestCard(),
+              // CustomRequestCard(),
             ]),
           ],
         ),

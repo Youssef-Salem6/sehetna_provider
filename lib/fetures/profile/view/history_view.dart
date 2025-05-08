@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:sehetna_provider/fetures/profile/models/requests_model.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sehetna_provider/core/Colors.dart';
 import 'package:sehetna_provider/fetures/home/view/widgets/custom_request_card.dart';
@@ -67,7 +68,11 @@ class _HistoryViewState extends State<HistoryView> {
       return ListView.builder(
         itemCount: cubit.requests.length,
         itemBuilder: (context, index) {
-          return const CustomRequestCard();
+          return CustomRequestCard(
+              requestsModel: RequestsModel.fromJson(
+            json: cubit.requests[index],
+            languageCode: Localizations.localeOf(context).languageCode,
+          ));
         },
       );
     } else if (state is GetRequestsFailure) {
