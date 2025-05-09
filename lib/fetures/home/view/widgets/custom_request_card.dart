@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:sehetna_provider/core/Colors.dart';
+import 'package:sehetna_provider/fetures/home/view/request_Details_view.dart';
 import 'package:sehetna_provider/fetures/profile/models/requests_model.dart';
 import 'package:sehetna_provider/generated/l10n.dart';
 
@@ -56,20 +57,30 @@ class CustomRequestCard extends StatelessWidget {
                     ),
                   ),
                   const Gap(10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Gap(size.width * 0.25),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          S.of(context).showDetails,
-                          style: const TextStyle(
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RequestDetailsView(
+                                requestId: requestsModel.id!),
+                          ));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Gap(size.width * 0.25),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            S.of(context).showDetails,
+                            style: const TextStyle(
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

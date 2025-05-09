@@ -894,6 +894,241 @@ class S {
   String get history {
     return Intl.message('History', name: 'history', desc: '', args: []);
   }
+
+  /// `Request Details`
+  String get requestDetails {
+    return Intl.message(
+      'Request Details',
+      name: 'requestDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Patient`
+  String get patient {
+    return Intl.message('Patient', name: 'patient', desc: '', args: []);
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message('Date', name: 'date', desc: '', args: []);
+  }
+
+  /// `Service type`
+  String get serviceType {
+    return Intl.message(
+      'Service type',
+      name: 'serviceType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Fees`
+  String get totalFees {
+    return Intl.message('Total Fees', name: 'totalFees', desc: '', args: []);
+  }
+
+  /// `Call Patient`
+  String get callPatient {
+    return Intl.message(
+      'Call Patient',
+      name: 'callPatient',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complaint`
+  String get complaint {
+    return Intl.message('Complaint', name: 'complaint', desc: '', args: []);
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message('Location', name: 'location', desc: '', args: []);
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+  }
+
+  /// `Age`
+  String get age {
+    return Intl.message('Age', name: 'age', desc: '', args: []);
+  }
+
+  /// `Create Complaint`
+  String get createComplaint {
+    return Intl.message(
+      'Create Complaint',
+      name: 'createComplaint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Your Complaint`
+  String get submitYourComplaint {
+    return Intl.message(
+      'Submit Your Complaint',
+      name: 'submitYourComplaint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We'll review your complaint and get back to you soon`
+  String get weWillReviewYourComplaintPrompt {
+    return Intl.message(
+      'We\'ll review your complaint and get back to you soon',
+      name: 'weWillReviewYourComplaintPrompt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subject`
+  String get subjectFieldLabel {
+    return Intl.message(
+      'Subject',
+      name: 'subjectFieldLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter complaint subject`
+  String get subjectFieldHint {
+    return Intl.message(
+      'Enter complaint subject',
+      name: 'subjectFieldHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get descriptionFieldLabel {
+    return Intl.message(
+      'Description',
+      name: 'descriptionFieldLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Describe your complaint in detail`
+  String get descriptionFieldHint {
+    return Intl.message(
+      'Describe your complaint in detail',
+      name: 'descriptionFieldHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Complaint`
+  String get submitButtonLabel {
+    return Intl.message(
+      'Submit Complaint',
+      name: 'submitButtonLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a subject`
+  String get subjectValidationError {
+    return Intl.message(
+      'Please enter a subject',
+      name: 'subjectValidationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please describe your complaint`
+  String get descriptionValidationEmptyError {
+    return Intl.message(
+      'Please describe your complaint',
+      name: 'descriptionValidationEmptyError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description should be at least 10 characters`
+  String get descriptionValidationLengthError {
+    return Intl.message(
+      'Description should be at least 10 characters',
+      name: 'descriptionValidationLengthError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your complaint has been submitted successfully`
+  String get complaintSubmittedSuccessfully {
+    return Intl.message(
+      'Your complaint has been submitted successfully',
+      name: 'complaintSubmittedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Services`
+  String get requestServices {
+    return Intl.message(
+      'Request Services',
+      name: 'requestServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services`
+  String get services {
+    return Intl.message('Services', name: 'services', desc: '', args: []);
+  }
+
+  /// `No services available`
+  String get noServices {
+    return Intl.message(
+      'No services available',
+      name: 'noServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Details`
+  String get viewDetails {
+    return Intl.message(
+      'View Details',
+      name: 'viewDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service ID:`
+  String get serviceID {
+    return Intl.message('Service ID:', name: 'serviceID', desc: '', args: []);
+  }
+
+  /// `Unknown Service`
+  String get unknownService {
+    return Intl.message(
+      'Unknown Service',
+      name: 'unknownService',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

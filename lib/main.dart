@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sehetna_provider/fetures/auth/manager/documentsStatus/documents_status_cubit.dart';
 import 'package:sehetna_provider/fetures/auth/manager/requiredDocuments/required_documents_cubit.dart';
 import 'package:sehetna_provider/fetures/auth/manager/uploadDecuments/upload_documents_cubit.dart';
+import 'package:sehetna_provider/fetures/home/manager/RequestDetails/request_details_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/getComplaints/get_complaints_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/getFeedbacks/get_feedbacks_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/getRequests/get_requests_cubit.dart';
@@ -31,6 +32,7 @@ void main(List<String> args) async {
       BlocProvider(create: (context) => RequiredDocumentsCubit()),
       BlocProvider(create: (context) => UploadDocumentsCubit()),
       BlocProvider(create: (context) => DocumentsStatusCubit()),
+      BlocProvider(create: (context) => RequestDetailsCubit()),
       BlocProvider(create: (context) => GetFeedbacksCubit()),
       BlocProvider(create: (context) => GetComplaintsCubit()),
       BlocProvider(create: (context) => GetRequestsCubit()),

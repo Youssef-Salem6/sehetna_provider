@@ -28,9 +28,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Additional Settings",
     ),
     "address": MessageLookupByLibrary.simpleMessage("Address"),
+    "age": MessageLookupByLibrary.simpleMessage("Age"),
     "analytics": MessageLookupByLibrary.simpleMessage("Analytics"),
     "approved": MessageLookupByLibrary.simpleMessage("Approved"),
+    "callPatient": MessageLookupByLibrary.simpleMessage("Call Patient"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "complaint": MessageLookupByLibrary.simpleMessage("Complaint"),
+    "complaintSubmittedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Your complaint has been submitted successfully",
+    ),
     "complaints": MessageLookupByLibrary.simpleMessage("Complaints"),
     "confermationPassword": MessageLookupByLibrary.simpleMessage(
       "Confermation Password",
@@ -40,6 +46,20 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
     "conttinue": MessageLookupByLibrary.simpleMessage("Continue"),
+    "createComplaint": MessageLookupByLibrary.simpleMessage("Create Complaint"),
+    "date": MessageLookupByLibrary.simpleMessage("Date"),
+    "descriptionFieldHint": MessageLookupByLibrary.simpleMessage(
+      "Describe your complaint in detail",
+    ),
+    "descriptionFieldLabel": MessageLookupByLibrary.simpleMessage(
+      "Description",
+    ),
+    "descriptionValidationEmptyError": MessageLookupByLibrary.simpleMessage(
+      "Please describe your complaint",
+    ),
+    "descriptionValidationLengthError": MessageLookupByLibrary.simpleMessage(
+      "Description should be at least 10 characters",
+    ),
     "didnotReciveEmail": MessageLookupByLibrary.simpleMessage(
       "Didn’t receive an email? ",
     ),
@@ -78,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgetPasswordInfo": MessageLookupByLibrary.simpleMessage(
       "Enter your email to reset your password.",
     ),
+    "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
     "haveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
@@ -103,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Language changed successfully",
     ),
     "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
+    "location": MessageLookupByLibrary.simpleMessage("Location"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "loginTitle": MessageLookupByLibrary.simpleMessage("Welcome Back"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
@@ -123,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "No description provided",
     ),
     "noResponseText": MessageLookupByLibrary.simpleMessage("No response yet"),
+    "noServices": MessageLookupByLibrary.simpleMessage("No services available"),
     "noSubjectText": MessageLookupByLibrary.simpleMessage("No Subject"),
     "oldPassword": MessageLookupByLibrary.simpleMessage("Old Password"),
     "onBoarding1Title": MessageLookupByLibrary.simpleMessage(
@@ -152,6 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Password changed successfully",
     ),
+    "patient": MessageLookupByLibrary.simpleMessage("Patient"),
     "phone": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "providerGain": MessageLookupByLibrary.simpleMessage("Provider Gain"),
@@ -161,12 +185,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "ready to receive requests",
     ),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
+    "requestDetails": MessageLookupByLibrary.simpleMessage("Request Details"),
+    "requestServices": MessageLookupByLibrary.simpleMessage("Request Services"),
     "requests": MessageLookupByLibrary.simpleMessage("Requests"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
     "responseTitle": MessageLookupByLibrary.simpleMessage("Response"),
     "sehetnaGain": MessageLookupByLibrary.simpleMessage("Sehetna Gain"),
     "selectUserType": MessageLookupByLibrary.simpleMessage("Select User Type"),
     "sendCode": MessageLookupByLibrary.simpleMessage("Send Reset Link"),
+    "serviceID": MessageLookupByLibrary.simpleMessage("Service ID:"),
+    "serviceType": MessageLookupByLibrary.simpleMessage("Service type"),
+    "services": MessageLookupByLibrary.simpleMessage("Services"),
     "shortAddressWarning": MessageLookupByLibrary.simpleMessage(
       "Address must be at least 12 characters long",
     ),
@@ -191,8 +220,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "statusOpen": MessageLookupByLibrary.simpleMessage("Open"),
     "statusPending": MessageLookupByLibrary.simpleMessage("Pending"),
     "statusResolved": MessageLookupByLibrary.simpleMessage("Resolved"),
+    "subjectFieldHint": MessageLookupByLibrary.simpleMessage(
+      "Enter complaint subject",
+    ),
+    "subjectFieldLabel": MessageLookupByLibrary.simpleMessage("Subject"),
+    "subjectValidationError": MessageLookupByLibrary.simpleMessage(
+      "Please enter a subject",
+    ),
+    "submitButtonLabel": MessageLookupByLibrary.simpleMessage(
+      "Submit Complaint",
+    ),
+    "submitYourComplaint": MessageLookupByLibrary.simpleMessage(
+      "Submit Your Complaint",
+    ),
     "todayGain": MessageLookupByLibrary.simpleMessage("Today revenue"),
+    "totalFees": MessageLookupByLibrary.simpleMessage("Total Fees"),
     "underReview": MessageLookupByLibrary.simpleMessage("Under Review"),
+    "unknownService": MessageLookupByLibrary.simpleMessage("Unknown Service"),
     "uploadDocuments": MessageLookupByLibrary.simpleMessage("Upload Documents"),
     "uploadHere": MessageLookupByLibrary.simpleMessage("Upload Here"),
     "uploadRequiredDocuments": MessageLookupByLibrary.simpleMessage(
@@ -201,6 +245,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "userType": MessageLookupByLibrary.simpleMessage("User Type"),
     "userTypeWarning": MessageLookupByLibrary.simpleMessage(
       "Please select your user type",
+    ),
+    "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
+    "weWillReviewYourComplaintPrompt": MessageLookupByLibrary.simpleMessage(
+      "We\'ll review your complaint and get back to you soon",
     ),
     "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome back"),
     "welcomeToSehetnaApp": MessageLookupByLibrary.simpleMessage(
