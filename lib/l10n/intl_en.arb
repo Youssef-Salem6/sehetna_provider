@@ -132,6 +132,7 @@
      "noServices": "No services available",
      "viewDetails": "View Details",
      "serviceID": "Service ID:",
-     "unknownService": "Unknown Service"
+     "unknownService": "Unknown Service",
+     "noOnngoingRequests" : "No Ongoing Requuests"
 
 }

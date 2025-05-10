@@ -1129,6 +1129,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No Ongoing Requuests`
+  String get noOnngoingRequests {
+    return Intl.message(
+      'No Ongoing Requuests',
+      name: 'noOnngoingRequests',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

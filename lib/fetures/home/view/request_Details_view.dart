@@ -197,9 +197,9 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
                         child: Image(
                           image: NetworkImage(
                               "$imagesBaseUrl/${request.customerImage}"),
-                          width: size.width * 0.94,
-                          height: size.height * 0.45,
-                          fit: BoxFit.cover,
+                          width: size.width * 0.9,
+                          height: size.height * 0.4,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),

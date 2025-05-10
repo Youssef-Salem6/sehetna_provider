@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:sehetna_provider/fetures/profile/manager/userAnalytics/user_analytics_cubit.dart';
+import 'package:sehetna_provider/generated/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sehetna_provider/fetures/profile/models/analytics_model.dart';
 
@@ -27,22 +28,20 @@ class _AnalyticsViewState extends State<AnalyticsView> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xff009379),
         elevation: 0,
-        title: const Text(
-          'Analytics Dashboard',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        title: Text(
+          S.of(context).analytics,
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        centerTitle: true,
       ),
       body: BlocBuilder<UserAnalyticsCubit, UserAnalyticsState>(
         builder: (context, state) {
           if (state is UserAnalyticsLoading) {
             return _buildLoadingShimmer();
           } else if (state is UserAnalyticsFailure) {
-            return Center(
-              child: Text(
-                'Error: ${state.errorMessage}',
-                style: const TextStyle(color: Colors.red),
-              ),
+            return Text(
+              'Error: ${state.errorMessage}',
+              style: const TextStyle(color: Colors.red),
             );
           } else if (state is UserAnalyticsSuccess) {
             final analytics = context.read<UserAnalyticsCubit>().analyticsModel;
@@ -449,7 +448,7 @@ class _AnalyticsViewState extends State<AnalyticsView> {
           const SizedBox(height: 10),
           _buildLinearProgressIndicator(
             'Acceptance Rate',
-            analytics.acceptanceRate ?? 0,
+            analytics.acceptanceRate?.toDouble() ?? 0,
             const Color(0xff009379),
           ),
           const SizedBox(height: 10),
@@ -459,7 +458,8 @@ class _AnalyticsViewState extends State<AnalyticsView> {
             Colors.redAccent,
           ),
           const SizedBox(height: 20),
-          _buildCompletionTimeDisplay(analytics.averageCompletionTime ?? 0),
+          _buildCompletionTimeDisplay(
+              analytics.averageCompletionTime?.toDouble() ?? 0),
         ],
       ),
     );

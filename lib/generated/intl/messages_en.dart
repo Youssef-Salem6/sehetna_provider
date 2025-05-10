@@ -144,6 +144,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noDescriptionText": MessageLookupByLibrary.simpleMessage(
       "No description provided",
     ),
+    "noOnngoingRequests": MessageLookupByLibrary.simpleMessage(
+      "No Ongoing Requuests",
+    ),
     "noResponseText": MessageLookupByLibrary.simpleMessage("No response yet"),
     "noServices": MessageLookupByLibrary.simpleMessage("No services available"),
     "noSubjectText": MessageLookupByLibrary.simpleMessage("No Subject"),

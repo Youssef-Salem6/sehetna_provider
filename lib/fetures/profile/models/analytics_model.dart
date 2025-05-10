@@ -11,8 +11,8 @@ class AnalyticsModel {
   String? averageRating;
   int? totalFeedbacks;
   int? rate5, rate4, rate3, rate2, rate1;
-  double? averageCompletionTime;
-  double? acceptanceRate;
+  int? averageCompletionTime;
+  int? acceptanceRate;
   int? cancellationRate;
 
   AnalyticsModel({
@@ -54,7 +54,7 @@ class AnalyticsModel {
     previousMonthEarnings =
         earningsAnalysis["previous_month_earnings"].toString();
     yearlyEarnings = earningsAnalysis["yearly_earnings"].toString();
-    averageRating = feedbackAnalysis["average_rating"];
+    averageRating = feedbackAnalysis["average_rating"].toString();
     totalRequests = feedbackAnalysis["total_feedbacks"];
     rate1 = feedbackAnalysis["rating_distribution"]["1"] ?? 0;
     rate2 = feedbackAnalysis["rating_distribution"]["2"] ?? 0;
@@ -62,7 +62,7 @@ class AnalyticsModel {
     rate4 = feedbackAnalysis["rating_distribution"]["4"] ?? 0;
     rate5 = feedbackAnalysis["rating_distribution"]["5"] ?? 0;
     averageCompletionTime = performanceMetrics["average_completion_time"];
-    acceptanceRate = performanceMetrics["acceptance_rate"];
+    acceptanceRate = performanceMetrics["acceptance_rate"] ?? 0;
     cancellationRate = performanceMetrics["cancellation_rate"];
   }
 }
