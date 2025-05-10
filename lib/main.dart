@@ -11,6 +11,7 @@ import 'package:sehetna_provider/fetures/profile/manager/getFeedbacks/get_feedba
 import 'package:sehetna_provider/fetures/profile/manager/getRequests/get_requests_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/language/change_language_cubit.dart';
 import 'package:sehetna_provider/fetures/profile/manager/services/email_luancher.dart';
+import 'package:sehetna_provider/fetures/profile/manager/userAnalytics/user_analytics_cubit.dart';
 import 'package:sehetna_provider/fetures/splash/view/splash_view.dart';
 
 import 'package:sehetna_provider/firebase_options.dart';
@@ -34,6 +35,7 @@ void main(List<String> args) async {
       BlocProvider(create: (context) => DocumentsStatusCubit()),
       BlocProvider(create: (context) => RequestDetailsCubit()),
       BlocProvider(create: (context) => GetFeedbacksCubit()),
+      BlocProvider(create: (context) => UserAnalyticsCubit()),
       BlocProvider(create: (context) => GetComplaintsCubit()),
       BlocProvider(create: (context) => GetRequestsCubit()),
       BlocProvider(

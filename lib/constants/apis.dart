@@ -28,6 +28,7 @@ String requiredDocsApi = "$providerBase/required-documents";
 String decumentsStatusApi = "$providerBase/document-status";
 String getFeedBacksApi = "$providerBase/feedbacks";
 String getComplaintApi = "$providerBase/complaints";
+String getAnalyticsApi = "$providerBase/analytics";
 
 String updateProfileApi = "$userBase/update-profile";
 String updateProfileImageApi = "$userBase/update-profile-image";
