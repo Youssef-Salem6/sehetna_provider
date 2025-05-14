@@ -15,7 +15,7 @@ class ChangeStatusCubit extends Cubit<ChangeStatusState> {
       url,
       headers: header,
       body: {
-        "is_available": !isActive ? 0.toString() : 1.toString(),
+        "is_available": isActive ? 0.toString() : 1.toString(),
         "latitude": lati.toString(),
         "longitude": long.toString(),
       },
@@ -24,8 +24,9 @@ class ChangeStatusCubit extends Cubit<ChangeStatusState> {
       isActive = !isActive;
       emit(ChangeStatusSuccess(message: jsonDecode(response.body)["message"]));
     } else {
-      emit(ChangeStatusFailure(
-          errorMessage: jsonDecode(response.body)["message"]));
+      emit(
+        ChangeStatusFailure(errorMessage: jsonDecode(response.body)["message"]),
+      );
     }
   }
 }

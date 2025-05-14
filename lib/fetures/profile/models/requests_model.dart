@@ -11,29 +11,30 @@ class RequestsModel {
       customerGender,
       customerAge;
 
-  RequestsModel(
-      {required this.address,
-      required this.customerId,
-      required this.id,
-      required this.phone,
-      required this.price,
-      required this.serviceId,
-      required this.serviceName,
-      required this.status,
-      required this.hasfeedBack,
-      required this.hasCancellation,
-      required this.complaints,
-      required this.feedbacks,
-      required this.createdAt,
-      required this.services,
-      required this.isMultiaple,
-      required this.categoryId,
-      required this.categoryName,
-      required this.customerAge,
-      required this.customerGender,
-      required this.customerImage,
-      required this.customerName,
-      required this.customerPhone});
+  RequestsModel({
+    required this.address,
+    required this.customerId,
+    required this.id,
+    required this.phone,
+    required this.price,
+    required this.serviceId,
+    required this.serviceName,
+    required this.status,
+    required this.hasfeedBack,
+    required this.hasCancellation,
+    required this.complaints,
+    required this.feedbacks,
+    required this.createdAt,
+    required this.services,
+    required this.isMultiaple,
+    required this.categoryId,
+    required this.categoryName,
+    required this.customerAge,
+    required this.customerGender,
+    required this.customerImage,
+    required this.customerName,
+    required this.customerPhone,
+  });
 
   RequestsModel.fromJson({required Map json, required String languageCode}) {
     Map customer = json["customer"];

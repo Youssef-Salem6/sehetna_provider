@@ -12,7 +12,6 @@ import 'package:sehetne_provider/fetures/profile/models/requests_model.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
 import 'package:sehetne_provider/main.dart';
 
-
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -38,12 +37,14 @@ class _HomeViewState extends State<HomeView> {
           // Handle failure if needed
         } else if (state is OngoingRequestsSuccess) {
           // Only initialize when we have data
-          if (BlocProvider.of<OngoingRequestsCubit>(context)
-              .ongoingRequests
-              .isNotEmpty) {
+          if (BlocProvider.of<OngoingRequestsCubit>(
+            context,
+          ).ongoingRequests.isNotEmpty) {
             requestsModel = RequestsModel.fromJson(
-              json: BlocProvider.of<OngoingRequestsCubit>(context)
-                  .ongoingRequests[0],
+              json:
+                  BlocProvider.of<OngoingRequestsCubit>(
+                    context,
+                  ).ongoingRequests[0],
               languageCode: Localizations.localeOf(context).languageCode,
             );
           }
@@ -56,8 +57,9 @@ class _HomeViewState extends State<HomeView> {
             child: ListView(
               children: [
                 CustomImageRow(
-                    name: pref.getString("firstName")!,
-                    image: "$imagesBaseUrl/${pref.getString("image")!}"),
+                  name: pref.getString("firstName")!,
+                  image: "$imagesBaseUrl/${pref.getString("image")!}",
+                ),
                 Gap(size.height * 0.02),
                 const HomeContainerView(),
                 Gap(size.height * 0.02),
@@ -67,12 +69,10 @@ class _HomeViewState extends State<HomeView> {
                   title: S.of(context).ongoingRequests,
                   children: [
                     if (state is OngoingRequestsSuccess &&
-                        BlocProvider.of<OngoingRequestsCubit>(context)
-                            .ongoingRequests
-                            .isNotEmpty)
-                      CustomRequestCard(
-                        requestsModel: requestsModel!,
-                      ),
+                        BlocProvider.of<OngoingRequestsCubit>(
+                          context,
+                        ).ongoingRequests.isNotEmpty)
+                      CustomRequestCard(requestsModel: requestsModel!),
                     if (state is OngoingRequestsEmpty)
                       Center(child: Text(S.of(context).noOnngoingRequests)),
                     if (state is OngoingRequestsLoading)
