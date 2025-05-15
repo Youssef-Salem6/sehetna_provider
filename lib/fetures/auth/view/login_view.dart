@@ -39,9 +39,10 @@ class _LoginViewState extends State<LoginView> {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const NavView()),
+              (route) => false,
             );
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(

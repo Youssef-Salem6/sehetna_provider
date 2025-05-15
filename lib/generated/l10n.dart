@@ -78,9 +78,35 @@ class S {
     return Intl.message('Continue', name: 'conttinue', desc: '', args: []);
   }
 
+  String get activeate {
+    return Intl.message('Activate', name: 'activeate', desc: '', args: []);
+  }
+
+  String get deActivate {
+    return Intl.message('Deactivate', name: 'deActivate', desc: '', args: []);
+  }
+
   /// `Finish`
   String get finish {
     return Intl.message('Finish', name: 'finish', desc: '', args: []);
+  }
+
+  String get startAccept {
+    return Intl.message(
+      'Start Accepting Your Requests Today!',
+      name: 'startAccept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get noRequist {
+    return Intl.message(
+      'No Requests Available!',
+      name: 'noRequist',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Join Our Network of Healthcare Providers`

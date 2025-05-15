@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:sehetne_provider/constants/apis.dart';
+import 'package:sehetne_provider/main.dart';
 part 'change_status_state.dart';
 
 class ChangeStatusCubit extends Cubit<ChangeStatusState> {
@@ -15,13 +16,13 @@ class ChangeStatusCubit extends Cubit<ChangeStatusState> {
       url,
       headers: header,
       body: {
-        "is_available": isActive ? 0.toString() : 1.toString(),
+        "is_available": pref.getBool("isActive")! ? 0.toString() : 1.toString(),
         "latitude": lati.toString(),
         "longitude": long.toString(),
       },
     );
     if (response.statusCode == 200) {
-      isActive = !isActive;
+      pref.setBool("isActive", !pref.getBool("isActive")!);
       emit(ChangeStatusSuccess(message: jsonDecode(response.body)["message"]));
     } else {
       emit(

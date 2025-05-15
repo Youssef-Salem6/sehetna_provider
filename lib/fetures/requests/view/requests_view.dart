@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:sehetne_provider/constants/apis.dart';
+import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/fetures/home/view/request_Details_view.dart';
 import 'package:sehetne_provider/fetures/requests/manager/changeStatus/change_status_cubit.dart';
 import 'package:sehetne_provider/fetures/requests/manager/getLocation/get_location_cubit.dart';
+import 'package:sehetne_provider/generated/l10n.dart';
 import 'package:sehetne_provider/main.dart';
 
 class RequestsView extends StatefulWidget {
@@ -61,21 +65,60 @@ class _RequestsViewState extends State<RequestsView> {
               }
             },
             builder: (context, locationState) {
+              var size = MediaQuery.of(context).size;
               return Scaffold(
-                appBar: AppBar(title: const Text('Service Requests')),
+                appBar: AppBar(
+                  title: Text(
+                    S.of(context).requestServices,
+                    style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
                 body: SafeArea(
                   child: Column(
                     children: [
                       Expanded(
                         child:
-                            providerId != null
+                            pref.getBool("isActive")!
                                 ? _buildRequestsStream(providerId!)
-                                : const Center(
-                                  child: Text('Provider ID not available'),
+                                : Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          "assets/images/Accept request-amico 1.svg",
+                                          width: size.width * 0.9,
+                                        ),
+                                        Gap(size.height * 0.02),
+                                        Text(
+                                          textAlign: TextAlign.center,
+                                          S.of(context).startAccept,
+                                          style: TextStyle(
+                                            color: kSecondaryColor,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                       ),
                       Center(
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: kSecondaryColor,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
                           onPressed: () {
                             if (changeStatusState is! ChangeStatusLoading) {
                               BlocProvider.of<GetLocationCubit>(
@@ -120,7 +163,16 @@ class _RequestsViewState extends State<RequestsView> {
         }
 
         if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
-          return const Center(child: Text('No requests available'));
+          return Center(
+            child: Text(
+              S.of(context).noRequist,
+              style: TextStyle(
+                color: kSecondaryColor,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          );
         }
 
         return ListView.builder(
@@ -298,7 +350,7 @@ class _RequestsViewState extends State<RequestsView> {
         return Colors.red;
       case 'pending':
       default:
-        return Colors.orange;
+        return kSecondaryColor;
     }
   }
 
@@ -336,6 +388,10 @@ class _RequestsViewState extends State<RequestsView> {
       return const Text("Getting location...");
     }
 
-    return Text(cubit.isActive ? "Deactivate" : "Activate");
+    return Text(
+      pref.getBool("isActive")!
+          ? S.of(context).deActivate
+          : S.of(context).activeate,
+    );
   }
 }

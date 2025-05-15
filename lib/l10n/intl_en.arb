@@ -135,6 +135,10 @@
      "unknownService": "Unknown Service",
      "noOnngoingRequests" : "No Ongoing Requuests",
      "accept" : "Accept Request",
-     "complete" : "Complete Request"
+     "complete" : "Complete Request",
+     "activeate" : "Activate",
+     "deActivate" : "Deactivate",
+     "startAccept" : "Start Accepting Your Requests Today!",
+     "noRequist" : "No Requests Available"
 
 }

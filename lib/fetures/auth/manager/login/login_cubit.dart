@@ -14,8 +14,10 @@ class LoginCubit extends Cubit<LoginState> {
   login(String email, String password) async {
     emit(LoginLoading());
     Uri url = Uri.parse(loginApi);
-    var response = await http.post(url,
-        body: {"email": email, "password": password, "user_type": "provider"});
+    var response = await http.post(
+      url,
+      body: {"email": email, "password": password, "user_type": "provider"},
+    );
     if (response.statusCode == 200) {
       Map data = jsonDecode(response.body);
       print(data["data"]["token"]);
@@ -27,9 +29,12 @@ class LoginCubit extends Cubit<LoginState> {
       pref.setString("address", data["data"]["user"]["address"]);
       pref.setString("token", data["data"]["token"]);
       pref.setString(
-          "provider_type", data["data"]["user"]["provider"]["provider_type"]);
+        "provider_type",
+        data["data"]["user"]["provider"]["provider_type"],
+      );
       pref.setString("image", data["data"]["user"]["profile_image"] ?? "");
       pref.setString("gender", data["data"]["user"]["gender"]);
+      pref.setBool("isActive", false);
       emit(LoginSuccess());
     } else if (response.statusCode == 422) {
       emit(LoginWrongUserType());
