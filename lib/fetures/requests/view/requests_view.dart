@@ -113,7 +113,10 @@ class _RequestsViewState extends State<RequestsView> {
                       Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: kSecondaryColor,
+                            backgroundColor:
+                                pref.getBool("isActive")!
+                                    ? Color(0xff930002)
+                                    : kSecondaryColor,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -240,14 +243,14 @@ class _RequestsViewState extends State<RequestsView> {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        data['service_names'] ?? 'No services specified',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
+                      // Text(
+                      //   data['service_names'] ?? 'No services specified',
+                      //   style: const TextStyle(
+                      //     fontSize: 16,
+                      //     color: Colors.grey,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 4),
                       Text(
                         'Distance: ${data['distance'] ?? 'N/A'}',
                         style: const TextStyle(
@@ -320,16 +323,6 @@ class _RequestsViewState extends State<RequestsView> {
                       child: const Text('Details'),
                     ),
                     const SizedBox(width: 8),
-                    status == 'pending'
-                        ? ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            foregroundColor: Colors.white,
-                          ),
-                          child: const Text('Accept'),
-                        )
-                        : Container(),
                   ],
                 ),
               ],

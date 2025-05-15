@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/fetures/home/manager/acceptRequest/accept_request_cubit.dart';
 import 'package:sehetne_provider/fetures/home/manager/completeRequest/complete_request_cubit.dart';
+import 'package:sehetne_provider/fetures/home/manager/ongoingRequests/ongoing_requests_cubit.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
+import 'package:sehetne_provider/main.dart';
 import 'package:shimmer/shimmer.dart';
 
 class AcceptRequestButton extends StatelessWidget {
@@ -24,6 +26,10 @@ class AcceptRequestButton extends StatelessWidget {
       child: BlocConsumer<AcceptRequestCubit, AcceptRequestState>(
         listener: (context, state) {
           if (state is AcceptRequestSuccess) {
+            BlocProvider.of<OngoingRequestsCubit>(
+              context,
+            ).getOngoningRequests();
+            pref.setBool("isActive", false);
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -44,6 +50,9 @@ class AcceptRequestButton extends StatelessWidget {
           return BlocConsumer<CompleteRequestCubit, CompleteRequestState>(
             listener: (context, completeState) {
               if (completeState is CompleteRequestSuccess) {
+                BlocProvider.of<OngoingRequestsCubit>(
+                  context,
+                ).getOngoningRequests();
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -62,7 +71,8 @@ class AcceptRequestButton extends StatelessWidget {
             },
             builder: (context, completeState) {
               // Show shimmer if either state is loading
-              if (state is AcceptRequestLoading || completeState is CompleteRequestLoading) {
+              if (state is AcceptRequestLoading ||
+                  completeState is CompleteRequestLoading) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
@@ -96,7 +106,9 @@ class AcceptRequestButton extends StatelessWidget {
                         }
                       },
                       child: Text(
-                        status == "pending" ? S.of(context).accept : S.of(context).complete,
+                        status == "pending"
+                            ? S.of(context).accept
+                            : S.of(context).complete,
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
