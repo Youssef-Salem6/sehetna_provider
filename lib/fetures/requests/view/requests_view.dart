@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sehetne_provider/constants/apis.dart';
+import 'package:sehetne_provider/fetures/home/view/request_Details_view.dart';
 import 'package:sehetne_provider/fetures/requests/manager/changeStatus/change_status_cubit.dart';
 import 'package:sehetne_provider/fetures/requests/manager/getLocation/get_location_cubit.dart';
 import 'package:sehetne_provider/main.dart';
@@ -105,7 +107,7 @@ class _RequestsViewState extends State<RequestsView> {
       stream:
           _firestore
               .collection('provider_requests')
-              .doc("3")
+              .doc(pref.getString("id"))
               .collection('notifications')
               .snapshots(),
       builder: (context, snapshot) {
@@ -151,28 +153,28 @@ class _RequestsViewState extends State<RequestsView> {
           children: [
             Row(
               children: [
-                // CircleAvatar(
-                //   radius: 30,
-                //   backgroundColor: Colors.grey.shade200,
-                //   backgroundImage:
-                //       imageUrl != null && imageUrl.isNotEmpty
-                //           ? NetworkImage("$imagesBaseUrl/$imageUrl")
-                //           : null,
-                //   child:
-                //       imageUrl == null || imageUrl.isEmpty
-                //           ? const Icon(
-                //             Icons.person,
-                //             size: 30,
-                //             color: Colors.grey,
-                //           )
-                //           : null,
-                //   onBackgroundImageError: (exception, stackTrace) {
-                //     // This will be called if the network image fails to load
-                //     setState(() {
-                //       imageUrl = null; // Fall back to placeholder
-                //     });
-                //   },
-                // ),
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.grey.shade200,
+                  backgroundImage:
+                      imageUrl != null && imageUrl.isNotEmpty
+                          ? NetworkImage("$imagesBaseUrl/$imageUrl")
+                          : null,
+                  child:
+                      imageUrl == null || imageUrl.isEmpty
+                          ? const Icon(
+                            Icons.person,
+                            size: 30,
+                            color: Colors.grey,
+                          )
+                          : null,
+                  onBackgroundImageError: (exception, stackTrace) {
+                    // This will be called if the network image fails to load
+                    setState(() {
+                      imageUrl = null; // Fall back to placeholder
+                    });
+                  },
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -251,7 +253,20 @@ class _RequestsViewState extends State<RequestsView> {
                 ),
                 Row(
                   children: [
-                    TextButton(onPressed: () {}, child: const Text('Details')),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => RequestDetailsView(
+                                  requestId: data["request_id"].toString(),
+                                ),
+                          ),
+                        );
+                      },
+                      child: const Text('Details'),
+                    ),
                     const SizedBox(width: 8),
                     status == 'pending'
                         ? ElevatedButton(

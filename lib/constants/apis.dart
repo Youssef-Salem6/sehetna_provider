@@ -30,6 +30,8 @@ String getFeedBacksApi = "$providerBase/feedbacks";
 String getComplaintApi = "$providerBase/complaints";
 String getAnalyticsApi = "$providerBase/analytics";
 String changeStatusApi = "$providerBase/availability";
+String acceptRequestApi = "$providerBase/accept";
+String completeRequestApi = "$providerBase/complete";
 
 String updateProfileApi = "$userBase/update-profile";
 String updateProfileImageApi = "$userBase/update-profile-image";

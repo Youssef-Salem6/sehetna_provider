@@ -60,6 +60,19 @@ class S {
     return Intl.message('Skip', name: 'skip', desc: '', args: []);
   }
 
+  String get accept {
+    return Intl.message('Accept Request', name: 'accept', desc: '', args: []);
+  }
+
+  String get complete {
+    return Intl.message(
+      'Complete Request',
+      name: 'complete',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue`
   String get conttinue {
     return Intl.message('Continue', name: 'conttinue', desc: '', args: []);

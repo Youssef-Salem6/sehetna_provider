@@ -133,6 +133,8 @@
      "viewDetails": "View Details",
      "serviceID": "Service ID:",
      "unknownService": "Unknown Service",
-     "noOnngoingRequests" : "No Ongoing Requuests"
+     "noOnngoingRequests" : "No Ongoing Requuests",
+     "accept" : "Accept Request",
+     "complete" : "Complete Request"
 
 }

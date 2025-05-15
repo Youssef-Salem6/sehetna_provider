@@ -10,6 +10,7 @@ import 'package:sehetne_provider/fetures/home/models/requestDetailsModel.dart';
 import 'package:sehetne_provider/fetures/home/view/create_complaint_view.dart';
 import 'package:sehetne_provider/fetures/home/view/request_services_view.dart';
 import 'package:sehetne_provider/fetures/home/view/widgets/Request_details_row.dart';
+import 'package:sehetne_provider/fetures/home/view/widgets/accept_request_button.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -307,43 +308,55 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
                     ),
                     const Gap(10),
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => CreateComplaintView(
-                                    requestId: request.requestId!,
-                                  ),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: kSecondaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              "assets/images/Icons/whiteComplaint.svg",
-                            ),
-                            const Gap(5),
-                            Text(
-                              S.of(context).complaint,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
+                      child: Visibility(
+                        visible: request.status != "pending",
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => CreateComplaintView(
+                                      requestId: request.requestId!,
+                                    ),
                               ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: kSecondaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                          ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                "assets/images/Icons/whiteComplaint.svg",
+                              ),
+                              const Gap(5),
+                              Text(
+                                S.of(context).complaint,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ],
+                ),
+                Visibility(
+                  visible:
+                      request.status == "pending" ||
+                      request.status == "accepted",
+                  child: AcceptRequestButton(
+                    status: request.status!,
+                    requestId: request.requestId.toString(),
+                  ),
                 ),
               ],
             ),
