@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
 import 'package:sehetne_provider/core/authTextField.dart';
@@ -66,13 +67,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: RadialGradient(
-                      center: Alignment.center, // Center the gradient
+                      center: Alignment.center,
                       colors: bgColorList,
-                      stops: [
-                        0.1,
-                        0.4,
-                        0.8,
-                      ], // Adjust the stops for smooth transitions
+                      stops: [0.1, 0.4, 0.8],
                     ),
                   ),
                   child: Padding(
@@ -96,18 +93,12 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                           Center(
                             child: ClipRect(
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 6,
-                                  sigmaY: 6,
-                                ), // Adjust blur intensity
+                                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
                                 child: Container(
                                   width: screenWidth * 0.88,
                                   decoration: BoxDecoration(
                                     color: Colors.black.withOpacity(0.2),
-                                    // Semi-transparent background
-                                    borderRadius: BorderRadius.circular(
-                                      8,
-                                    ), // Rounded corners
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
@@ -115,81 +106,100 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                                       key: _formKey,
                                       child: SizedBox(
                                         height: screenHeight * 0.63,
-                                        child: ListView(
-                                          children: [
-                                            Gap(screenHeight * 0.03),
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: CustomText(
-                                                txt:
-                                                    S
-                                                        .of(context)
-                                                        .ForgetPassword,
-                                                size: 24,
-                                              ),
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            SvgPicture.asset(
-                                              "assets/images/amico.svg",
-                                              width: 182,
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            Text(
-                                              S.of(context).forgetPasswordInfo,
-                                              style: TextStyle(
-                                                color: Colors.white.withOpacity(
-                                                  0.5,
+                                        child:
+                                            state is ForgetPasswordLoading
+                                                ? _buildShimmerLoading(
+                                                  screenHeight,
+                                                )
+                                                : ListView(
+                                                  children: [
+                                                    Gap(screenHeight * 0.03),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: CustomText(
+                                                        txt:
+                                                            S
+                                                                .of(context)
+                                                                .ForgetPassword,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    SvgPicture.asset(
+                                                      "assets/images/amico.svg",
+                                                      width: 182,
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    Text(
+                                                      S
+                                                          .of(context)
+                                                          .forgetPasswordInfo,
+                                                      style: TextStyle(
+                                                        color: Colors.white
+                                                            .withOpacity(0.5),
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    CustomText(
+                                                      txt: S.of(context).email,
+                                                      size: 16,
+                                                    ),
+                                                    const Gap(8),
+                                                    AuthTextField(
+                                                      controller:
+                                                          emailController,
+                                                      hint: S.of(context).email,
+                                                      type:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      validator: (value) {
+                                                        if (value == null ||
+                                                            value.isEmpty) {
+                                                          return S
+                                                              .of(context)
+                                                              .embtyEmailWarning;
+                                                        }
+                                                        if (!RegExp(
+                                                          r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}',
+                                                        ).hasMatch(value)) {
+                                                          return S
+                                                              .of(context)
+                                                              .inValidMailWarning;
+                                                        }
+                                                        return null;
+                                                      },
+                                                      backColor: Colors.white,
+                                                    ),
+                                                    Gap(screenHeight * 0.05),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        if (_formKey
+                                                            .currentState!
+                                                            .validate()) {
+                                                          BlocProvider.of<
+                                                            ForgetPasswordCubit
+                                                          >(
+                                                            context,
+                                                          ).forgetPassword(
+                                                            email:
+                                                                emailController
+                                                                    .text,
+                                                          );
+                                                        }
+                                                      },
+                                                      child: CustomButton(
+                                                        title:
+                                                            S
+                                                                .of(context)
+                                                                .sendCode,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            CustomText(
-                                              txt: S.of(context).email,
-                                              size: 16,
-                                            ),
-                                            const Gap(8),
-                                            AuthTextField(
-                                              controller: emailController,
-                                              hint: S.of(context).email,
-                                              type: TextInputType.emailAddress,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return S
-                                                      .of(context)
-                                                      .embtyEmailWarning;
-                                                }
-                                                if (!RegExp(
-                                                  r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}',
-                                                ).hasMatch(value)) {
-                                                  return S
-                                                      .of(context)
-                                                      .inValidMailWarning;
-                                                }
-                                                return null;
-                                              },
-                                              backColor: Colors.white,
-                                            ),
-                                            Gap(screenHeight * 0.05),
-                                            GestureDetector(
-                                              onTap: () {
-                                                if (_formKey.currentState!
-                                                    .validate()) {
-                                                  BlocProvider.of<
-                                                    ForgetPasswordCubit
-                                                  >(context).forgetPassword(
-                                                    email: emailController.text,
-                                                  );
-                                                }
-                                              },
-                                              child: CustomButton(
-                                                title: S.of(context).sendCode,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
                                       ),
                                     ),
                                   ),
@@ -206,6 +216,29 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildShimmerLoading(double screenHeight) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: ListView(
+        children: [
+          Gap(screenHeight * 0.03),
+          Container(width: 200, height: 30, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Container(width: 182, height: 150, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Container(width: double.infinity, height: 80, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Container(width: 100, height: 20, color: Colors.white),
+          const Gap(8),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          Gap(screenHeight * 0.05),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+        ],
       ),
     );
   }

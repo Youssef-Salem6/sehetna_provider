@@ -13,7 +13,6 @@ import 'package:sehetne_provider/fetures/auth/view/widgets/register_fields_list.
 import 'package:sehetne_provider/generated/l10n.dart';
 import 'package:sehetne_provider/main.dart';
 
-
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -72,14 +71,17 @@ class _RegisterViewState extends State<RegisterView> {
                         child: ClipRect(
                           child: BackdropFilter(
                             filter: ImageFilter.blur(
-                                sigmaX: 6, sigmaY: 6), // Adjust blur intensity
+                              sigmaX: 6,
+                              sigmaY: 6,
+                            ), // Adjust blur intensity
                             child: Container(
                               width: screenWidth * 0.88,
                               decoration: BoxDecoration(
                                 color: Colors.black.withOpacity(0.2),
                                 // Semi-transparent background
-                                borderRadius:
-                                    BorderRadius.circular(8), // Rounded corners
+                                borderRadius: BorderRadius.circular(
+                                  8,
+                                ), // Rounded corners
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(16.0),
@@ -93,55 +95,64 @@ class _RegisterViewState extends State<RegisterView> {
                                         Align(
                                           alignment: Alignment.center,
                                           child: CustomText(
-                                              txt: S.of(context).joinUs,
-                                              size: 24),
+                                            txt: S.of(context).joinUs,
+                                            size: 24,
+                                          ),
                                         ),
                                         Gap(screenHeight * 0.02),
                                         SizedBox(
                                           height: screenHeight * 0.32,
-                                          child:
-                                              RegisterFieldsList(controllers: {
-                                            "firstNameController":
-                                                firstNameController,
-                                            "lastNameController":
-                                                lastNameController,
-                                            "passwordController":
-                                                passwordController,
-                                            "confirmPasswordController":
-                                                confirmPasswordController,
-                                            "emailController": emailController,
-                                          }),
+                                          child: RegisterFieldsList(
+                                            controllers: {
+                                              "firstNameController":
+                                                  firstNameController,
+                                              "lastNameController":
+                                                  lastNameController,
+                                              "passwordController":
+                                                  passwordController,
+                                              "confirmPasswordController":
+                                                  confirmPasswordController,
+                                              "emailController":
+                                                  emailController,
+                                            },
+                                          ),
                                         ),
                                         const Gap(50),
                                         GestureDetector(
                                           onTap: () {
                                             if (_formKey.currentState!
                                                 .validate()) {
-                                              pref.setString("email",
-                                                  emailController.text);
+                                              pref.setString(
+                                                "email",
+                                                emailController.text,
+                                              );
                                               Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          RegisterSecondLevel(
-                                                            data: {
-                                                              "first_name":
-                                                                  firstNameController
-                                                                      .text,
-                                                              "last_name":
-                                                                  lastNameController
-                                                                      .text,
-                                                              "password":
-                                                                  passwordController
-                                                                      .text,
-                                                              "email":
-                                                                  emailController
-                                                                      .text,
-                                                              "password_confirmation":
-                                                                  confirmPasswordController
-                                                                      .text,
-                                                            },
-                                                          )));
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (
+                                                        context,
+                                                      ) => RegisterSecondLevel(
+                                                        data: {
+                                                          "first_name":
+                                                              firstNameController
+                                                                  .text,
+                                                          "last_name":
+                                                              lastNameController
+                                                                  .text,
+                                                          "password":
+                                                              passwordController
+                                                                  .text,
+                                                          "email":
+                                                              emailController
+                                                                  .text,
+                                                          "password_confirmation":
+                                                              confirmPasswordController
+                                                                  .text,
+                                                        },
+                                                      ),
+                                                ),
+                                              );
                                             }
                                           },
                                           child: Container(
@@ -149,18 +160,21 @@ class _RegisterViewState extends State<RegisterView> {
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                               border: Border.all(
-                                                  color: Colors.white),
+                                                color: Colors.white,
+                                              ),
                                             ),
                                             child: CustomButton(
-                                                title: S.of(context).signUp),
+                                              title: S.of(context).conttinue,
+                                            ),
                                           ),
                                         ),
                                         const Gap(50),
                                         Align(
                                           alignment: Alignment.center,
                                           child: CustomText(
-                                              txt: S.of(context).signUpWith,
-                                              size: 16),
+                                            txt: S.of(context).signUpWith,
+                                            size: 16,
+                                          ),
                                         ),
                                         const Gap(20),
                                         const Row(
@@ -168,14 +182,17 @@ class _RegisterViewState extends State<RegisterView> {
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             CustomIcon(
-                                                image:
-                                                    "assets/images/akar-icons_google-contained-fill.svg"),
+                                              image:
+                                                  "assets/images/akar-icons_google-contained-fill.svg",
+                                            ),
                                             CustomIcon(
-                                                image:
-                                                    "assets/images/appleLogo.svg"),
+                                              image:
+                                                  "assets/images/appleLogo.svg",
+                                            ),
                                             CustomIcon(
-                                                image:
-                                                    "assets/images/faceBookLogo.svg"),
+                                              image:
+                                                  "assets/images/faceBookLogo.svg",
+                                            ),
                                           ],
                                         ),
                                         const Gap(30),
@@ -186,8 +203,9 @@ class _RegisterViewState extends State<RegisterView> {
                                             Text(
                                               S.of(context).haveAccount,
                                               style: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.3),
+                                                color: Colors.white.withOpacity(
+                                                  0.3,
+                                                ),
                                                 fontSize: 16,
                                               ),
                                             ),
@@ -196,8 +214,9 @@ class _RegisterViewState extends State<RegisterView> {
                                                 Navigator.pop(context);
                                               },
                                               child: CustomText(
-                                                  txt: S.of(context).login,
-                                                  size: 16),
+                                                txt: S.of(context).login,
+                                                size: 16,
+                                              ),
                                             ),
                                           ],
                                         ),

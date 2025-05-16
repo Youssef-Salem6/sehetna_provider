@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
 import 'package:sehetne_provider/core/authPassField.dart';
@@ -67,13 +68,9 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: RadialGradient(
-                      center: Alignment.center, // Center the gradient
+                      center: Alignment.center,
                       colors: bgColorList,
-                      stops: [
-                        0.1,
-                        0.4,
-                        0.8,
-                      ], // Adjust the stops for smooth transitions
+                      stops: [0.1, 0.4, 0.8],
                     ),
                   ),
                   child: Padding(
@@ -93,22 +90,15 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                             ],
                           ),
                           Gap(screenHeight * 0.04),
-                          // Blurred Container
                           Center(
                             child: ClipRect(
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 6,
-                                  sigmaY: 6,
-                                ), // Adjust blur intensity
+                                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
                                 child: Container(
                                   width: screenWidth * 0.88,
                                   decoration: BoxDecoration(
                                     color: Colors.black.withOpacity(0.2),
-                                    // Semi-transparent background
-                                    borderRadius: BorderRadius.circular(
-                                      8,
-                                    ), // Rounded corners
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
@@ -116,116 +106,147 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                                       key: _formKey,
                                       child: SizedBox(
                                         height: screenHeight * 0.73,
-                                        child: ListView(
-                                          children: [
-                                            Gap(screenHeight * 0.03),
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: CustomText(
-                                                txt:
-                                                    S
-                                                        .of(context)
-                                                        .ForgetPassword,
-                                                size: 24,
-                                              ),
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            SvgPicture.asset(
-                                              "assets/images/amico.svg",
-                                              width: 182,
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            Text(
-                                              S.of(context).newPasswordInfo,
-                                              style: TextStyle(
-                                                color: Colors.white.withOpacity(
-                                                  0.5,
+                                        child:
+                                            state is ResetPasswordLoading
+                                                ? _buildShimmerLoading(
+                                                  screenHeight,
+                                                )
+                                                : ListView(
+                                                  children: [
+                                                    Gap(screenHeight * 0.03),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: CustomText(
+                                                        txt:
+                                                            S
+                                                                .of(context)
+                                                                .ForgetPassword,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    SvgPicture.asset(
+                                                      "assets/images/amico.svg",
+                                                      width: 182,
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    Text(
+                                                      S
+                                                          .of(context)
+                                                          .newPasswordInfo,
+                                                      style: TextStyle(
+                                                        color: Colors.white
+                                                            .withOpacity(0.5),
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    CustomText(
+                                                      txt:
+                                                          S
+                                                              .of(context)
+                                                              .newPassword,
+                                                      size: 16,
+                                                    ),
+                                                    const Gap(8),
+                                                    AuthPassField(
+                                                      controller:
+                                                          confirmPasswordController,
+                                                      hint:
+                                                          S
+                                                              .of(context)
+                                                              .Password,
+                                                      type:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      validator: (value) {
+                                                        if (value == null ||
+                                                            value.isEmpty) {
+                                                          return S
+                                                              .of(context)
+                                                              .embtyPasswordWarning;
+                                                        }
+                                                        if (value.length < 6) {
+                                                          return S
+                                                              .of(context)
+                                                              .shortPasswordWarning;
+                                                        }
+                                                        return null;
+                                                      },
+                                                    ),
+                                                    Gap(screenHeight * 0.03),
+                                                    CustomText(
+                                                      txt:
+                                                          S
+                                                              .of(context)
+                                                              .confermationPassword,
+                                                      size: 16,
+                                                    ),
+                                                    const Gap(8),
+                                                    AuthPassField(
+                                                      controller:
+                                                          passwordController,
+                                                      hint:
+                                                          S
+                                                              .of(context)
+                                                              .Password,
+                                                      type:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      validator: (value) {
+                                                        if (value == null ||
+                                                            value.isEmpty) {
+                                                          return S
+                                                              .of(context)
+                                                              .embtyPasswordWarning;
+                                                        }
+                                                        if (value !=
+                                                            passwordController
+                                                                .text) {
+                                                          return S
+                                                              .of(context)
+                                                              .confermationPasswordError;
+                                                        }
+                                                        return null;
+                                                      },
+                                                    ),
+                                                    Gap(screenHeight * 0.05),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        if (_formKey
+                                                                .currentState!
+                                                                .validate() &&
+                                                            passwordController
+                                                                    .text ==
+                                                                confirmPasswordController
+                                                                    .text) {
+                                                          BlocProvider.of<
+                                                            ResetPasswordCubit
+                                                          >(
+                                                            context,
+                                                          ).resetPassword(
+                                                            email: widget.email,
+                                                            password:
+                                                                passwordController
+                                                                    .text,
+                                                            confirmationPassword:
+                                                                confirmPasswordController
+                                                                    .text,
+                                                          );
+                                                        }
+                                                      },
+                                                      child: CustomButton(
+                                                        title:
+                                                            S
+                                                                .of(context)
+                                                                .conttinue,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            CustomText(
-                                              txt: S.of(context).newPassword,
-                                              size: 16,
-                                            ),
-                                            const Gap(8),
-                                            AuthPassField(
-                                              controller:
-                                                  confirmPasswordController,
-                                              hint: S.of(context).Password,
-                                              type: TextInputType.emailAddress,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return S
-                                                      .of(context)
-                                                      .embtyPasswordWarning;
-                                                }
-                                                if (value.length < 6) {
-                                                  return S
-                                                      .of(context)
-                                                      .shortPasswordWarning;
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                            Gap(screenHeight * 0.03),
-                                            CustomText(
-                                              txt:
-                                                  S
-                                                      .of(context)
-                                                      .confermationPassword,
-                                              size: 16,
-                                            ),
-                                            const Gap(8),
-                                            AuthPassField(
-                                              controller: passwordController,
-                                              hint: S.of(context).Password,
-                                              type: TextInputType.emailAddress,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return S
-                                                      .of(context)
-                                                      .embtyPasswordWarning;
-                                                }
-                                                if (value !=
-                                                    passwordController.text) {
-                                                  return S
-                                                      .of(context)
-                                                      .confermationPasswordError;
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                            Gap(screenHeight * 0.05),
-                                            GestureDetector(
-                                              onTap: () {
-                                                if (_formKey.currentState!
-                                                        .validate() &&
-                                                    passwordController.text ==
-                                                        confirmPasswordController
-                                                            .text) {
-                                                  BlocProvider.of<
-                                                    ResetPasswordCubit
-                                                  >(context).resetPassword(
-                                                    email: widget.email,
-                                                    password:
-                                                        passwordController.text,
-                                                    confirmationPassword:
-                                                        confirmPasswordController
-                                                            .text,
-                                                  );
-                                                }
-                                              },
-                                              child: CustomButton(
-                                                title: S.of(context).conttinue,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
                                       ),
                                     ),
                                   ),
@@ -242,6 +263,43 @@ class _NewPasswordViewState extends State<NewPasswordView> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildShimmerLoading(double screenHeight) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: ListView(
+        children: [
+          Gap(screenHeight * 0.03),
+          Container(
+            width: 200,
+            height: 30,
+            color: Colors.white,
+            margin: const EdgeInsets.symmetric(horizontal: 70),
+          ),
+          Gap(screenHeight * 0.03),
+          Container(
+            width: 182,
+            height: 150,
+            color: Colors.white,
+            margin: const EdgeInsets.symmetric(horizontal: 80),
+          ),
+          Gap(screenHeight * 0.03),
+          Container(width: double.infinity, height: 60, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Container(width: 120, height: 20, color: Colors.white),
+          const Gap(8),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Container(width: 180, height: 20, color: Colors.white),
+          const Gap(8),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          Gap(screenHeight * 0.05),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+        ],
       ),
     );
   }

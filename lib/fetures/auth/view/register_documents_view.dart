@@ -11,7 +11,6 @@ import 'package:sehetne_provider/core/custom_text.dart';
 import 'package:sehetne_provider/fetures/auth/manager/requiredDocuments/required_documents_cubit.dart';
 import 'package:sehetne_provider/fetures/auth/manager/uploadDecuments/upload_documents_cubit.dart';
 import 'package:sehetne_provider/fetures/auth/view/documents_status_view.dart';
-import 'package:sehetne_provider/fetures/auth/view/widgets/loading_view.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
 import 'package:sehetne_provider/main.dart';
 
@@ -26,6 +25,7 @@ class RegisterDocumentsView extends StatefulWidget {
 class _RegisterDocumentsViewState extends State<RegisterDocumentsView> {
   List<File?> selectedFiles = [];
   List<bool> isUploaded = [];
+
   @override
   void initState() {
     super.initState();
@@ -138,9 +138,7 @@ class _RegisterDocumentsViewState extends State<RegisterDocumentsView> {
           },
           child: BlocBuilder<RequiredDocumentsCubit, RequiredDocumentsState>(
             builder: (context, state) {
-              if (state is RequiredDocumentsLoading) {
-                return const Center(child: LoadingView());
-              } else if (state is RequiredDocumentsFailure) {
+              if (state is RequiredDocumentsFailure) {
                 return const Center(
                   child: Text('Failed to load required documents.'),
                 );

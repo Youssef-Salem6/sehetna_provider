@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
 import 'package:sehetne_provider/core/authTextField.dart';
@@ -26,10 +27,32 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
   TextEditingController addressController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController idController = TextEditingController();
-  String? selectedUserType; // To store the selected user type
+  String? selectedUserType;
 
-  // Dropdown options
   final List<String> userTypes = ["Individual", "Organizational"];
+
+  Widget _buildShimmerButton() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.white),
+          color: Colors.white,
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              'Loading...',
+              style: TextStyle(fontSize: 18, color: Colors.transparent),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,20 +79,18 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
           }
         },
         builder: (context, state) {
+          bool isLoading = state is RegisterLoading;
+
           return SafeArea(
             child: Scaffold(
-              body: ListView(
+              body: Stack(
                 children: [
                   Container(
                     decoration: const BoxDecoration(
                       gradient: RadialGradient(
-                        center: Alignment.center, // Center the gradient
+                        center: Alignment.center,
                         colors: bgColorList,
-                        stops: [
-                          0.1,
-                          0.4,
-                          0.8,
-                        ], // Adjust the stops for smooth transitions
+                        stops: [0.1, 0.4, 0.8],
                       ),
                     ),
                     child: Padding(
@@ -77,7 +98,6 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                       child: SizedBox(
                         height: screenHeight,
                         child: ListView(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Gap(screenHeight * 0.02),
                             Row(
@@ -90,22 +110,18 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                               ],
                             ),
                             Gap(screenHeight * 0.03),
-                            // Blurred Container
                             Center(
                               child: ClipRect(
                                 child: BackdropFilter(
                                   filter: ImageFilter.blur(
                                     sigmaX: 6,
                                     sigmaY: 6,
-                                  ), // Adjust blur intensity
+                                  ),
                                   child: Container(
                                     width: screenWidth * 0.88,
                                     decoration: BoxDecoration(
                                       color: Colors.black.withOpacity(0.2),
-                                      // Semi-transparent background
-                                      borderRadius: BorderRadius.circular(
-                                        8,
-                                      ), // Rounded corners
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(16.0),
@@ -205,7 +221,6 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                                                 backColor: Colors.white,
                                               ),
                                               const Gap(20),
-                                              // Dropdown for User Type
                                               CustomText(
                                                 txt: S.of(context).userType,
                                                 size: 16,
@@ -290,7 +305,6 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                                               const Gap(30),
                                               Row(
                                                 children: [
-                                                  // Male Button
                                                   Expanded(
                                                     child: GestureDetector(
                                                       onTap: () {
@@ -349,7 +363,6 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                                                     ),
                                                   ),
                                                   const Gap(8),
-                                                  // Female Button
                                                   Expanded(
                                                     child: GestureDetector(
                                                       onTap: () {
@@ -373,7 +386,7 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                                                                       'female'
                                                                   ? const Color(
                                                                     0xFFFFC0CB,
-                                                                  ) // Pink color for female
+                                                                  )
                                                                   : Colors
                                                                       .white,
                                                           borderRadius:
@@ -411,7 +424,6 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                                               const Gap(50),
                                               GestureDetector(
                                                 onTap: () {
-                                                  // print(selectedUserType);
                                                   if (_formKey.currentState!
                                                       .validate()) {
                                                     BlocProvider.of<
@@ -463,9 +475,15 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                                                       color: Colors.white,
                                                     ),
                                                   ),
-                                                  child: CustomButton(
-                                                    title: S.of(context).signUp,
-                                                  ),
+                                                  child:
+                                                      isLoading
+                                                          ? _buildShimmerButton()
+                                                          : CustomButton(
+                                                            title:
+                                                                S
+                                                                    .of(context)
+                                                                    .signUp,
+                                                          ),
                                                 ),
                                               ),
                                             ],
@@ -482,6 +500,17 @@ class _RegisterSecondLevelState extends State<RegisterSecondLevel> {
                       ),
                     ),
                   ),
+                  if (isLoading)
+                    Container(
+                      color: Colors.black.withOpacity(0.3),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

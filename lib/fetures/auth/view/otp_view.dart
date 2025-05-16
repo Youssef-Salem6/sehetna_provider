@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
 import 'package:sehetne_provider/core/custom_text.dart';
@@ -11,7 +12,6 @@ import 'package:sehetne_provider/fetures/auth/manager/checkOtp/check_otp_cubit.d
 import 'package:sehetne_provider/fetures/auth/manager/forgetPassword/forget_password_cubit.dart';
 import 'package:sehetne_provider/fetures/auth/view/new_password_View.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
-
 
 class OtpView extends StatefulWidget {
   final String email;
@@ -32,12 +32,8 @@ class _OtpViewState extends State<OtpView> {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => CheckOtpCubit(),
-        ),
-        BlocProvider(
-          create: (context) => ForgetPasswordCubit(),
-        ),
+        BlocProvider(create: (context) => CheckOtpCubit()),
+        BlocProvider(create: (context) => ForgetPasswordCubit()),
       ],
       child: BlocConsumer<CheckOtpCubit, CheckOtpState>(
         listener: (context, state) {
@@ -54,19 +50,14 @@ class _OtpViewState extends State<OtpView> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NewPasswordView(
-                  email: widget.email,
-                ),
+                builder: (context) => NewPasswordView(email: widget.email),
               ),
             );
           } else if (state is CheckOtpFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 backgroundColor: Color.fromARGB(255, 248, 117, 107),
-                content: Text(
-                  'Wrong Code',
-                  style: TextStyle(fontSize: 16),
-                ),
+                content: Text('Wrong Code', style: TextStyle(fontSize: 16)),
               ),
             );
           }
@@ -103,13 +94,9 @@ class _OtpViewState extends State<OtpView> {
                     child: Container(
                       decoration: const BoxDecoration(
                         gradient: RadialGradient(
-                          center: Alignment.center, // Center the gradient
+                          center: Alignment.center,
                           colors: bgColorList,
-                          stops: [
-                            0.1,
-                            0.4,
-                            0.8,
-                          ], // Adjust the stops for smooth transitions
+                          stops: [0.1, 0.4, 0.8],
                         ),
                       ),
                       child: Padding(
@@ -129,20 +116,18 @@ class _OtpViewState extends State<OtpView> {
                                 ],
                               ),
                               Gap(screenHeight * 0.06),
-                              // Blurred Container
                               Center(
                                 child: ClipRect(
                                   child: BackdropFilter(
                                     filter: ImageFilter.blur(
-                                        sigmaX: 6,
-                                        sigmaY: 6), // Adjust blur intensity
+                                      sigmaX: 6,
+                                      sigmaY: 6,
+                                    ),
                                     child: Container(
                                       width: screenWidth * 0.88,
                                       decoration: BoxDecoration(
                                         color: Colors.black.withOpacity(0.2),
-                                        // Semi-transparent background
-                                        borderRadius: BorderRadius.circular(
-                                            8), // Rounded corners
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(16.0),
@@ -150,142 +135,213 @@ class _OtpViewState extends State<OtpView> {
                                           key: _formKey,
                                           child: SizedBox(
                                             height: screenHeight * 0.63,
-                                            child: ListView(
-                                              children: [
-                                                Gap(screenHeight * 0.03),
-                                                Align(
-                                                  alignment: Alignment.center,
-                                                  child: CustomText(
-                                                      txt: S
-                                                          .of(context)
-                                                          .ForgetPassword,
-                                                      size: 24),
-                                                ),
-                                                Gap(screenHeight * 0.03),
-                                                SvgPicture.asset(
-                                                  "assets/images/amico.svg",
-                                                  width: 182,
-                                                ),
-                                                Gap(screenHeight * 0.03),
-                                                Text(
-                                                  S.of(context).otpInfo,
-                                                  style: TextStyle(
-                                                      color: Colors.white
-                                                          .withOpacity(0.5),
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                                Gap(screenHeight * 0.03),
-                                                Pinput(
-                                                  length: 6,
-                                                  controller: otpController,
-                                                  defaultPinTheme: PinTheme(
-                                                    width: 50,
-                                                    height: 50,
-                                                    textStyle: const TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black,
+                                            child:
+                                                state is CheckOtpLoading ||
+                                                        state
+                                                            is ForgetPasswordLoading
+                                                    ? _buildShimmerLoading(
+                                                      screenHeight,
+                                                    )
+                                                    : ListView(
+                                                      children: [
+                                                        Gap(
+                                                          screenHeight * 0.03,
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: CustomText(
+                                                            txt:
+                                                                S
+                                                                    .of(context)
+                                                                    .ForgetPassword,
+                                                            size: 24,
+                                                          ),
+                                                        ),
+                                                        Gap(
+                                                          screenHeight * 0.03,
+                                                        ),
+                                                        SvgPicture.asset(
+                                                          "assets/images/amico.svg",
+                                                          width: 182,
+                                                        ),
+                                                        Gap(
+                                                          screenHeight * 0.03,
+                                                        ),
+                                                        Text(
+                                                          S.of(context).otpInfo,
+                                                          style: TextStyle(
+                                                            color: Colors.white
+                                                                .withOpacity(
+                                                                  0.5,
+                                                                ),
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                        Gap(
+                                                          screenHeight * 0.03,
+                                                        ),
+                                                        Pinput(
+                                                          length: 6,
+                                                          controller:
+                                                              otpController,
+                                                          defaultPinTheme: PinTheme(
+                                                            width: 50,
+                                                            height: 50,
+                                                            textStyle:
+                                                                const TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color:
+                                                                      Colors
+                                                                          .black,
+                                                                ),
+                                                            decoration: BoxDecoration(
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                    0.25,
+                                                                  ),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(
+                                                                    10,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          focusedPinTheme: PinTheme(
+                                                            width: 50,
+                                                            height: 50,
+                                                            textStyle:
+                                                                const TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color:
+                                                                      Colors
+                                                                          .black,
+                                                                ),
+                                                            decoration: BoxDecoration(
+                                                              color:
+                                                                  Colors
+                                                                      .grey
+                                                                      .shade200,
+                                                              borderRadius:
+                                                                  BorderRadius.circular(
+                                                                    10,
+                                                                  ),
+                                                              border: Border.all(
+                                                                color:
+                                                                    Colors.blue,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          submittedPinTheme: PinTheme(
+                                                            width: 50,
+                                                            height: 50,
+                                                            textStyle:
+                                                                const TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color:
+                                                                      Colors
+                                                                          .white,
+                                                                ),
+                                                            decoration: BoxDecoration(
+                                                              color: Colors
+                                                                  .white
+                                                                  .withOpacity(
+                                                                    0.1,
+                                                                  ),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(
+                                                                    10,
+                                                                  ),
+                                                              border: Border.all(
+                                                                color:
+                                                                    Colors
+                                                                        .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Gap(
+                                                          screenHeight * 0.05,
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            BlocProvider.of<
+                                                              CheckOtpCubit
+                                                            >(
+                                                              context,
+                                                            ).checkCode(
+                                                              email:
+                                                                  widget.email,
+                                                              code:
+                                                                  otpController
+                                                                      .text,
+                                                            );
+                                                          },
+                                                          child: CustomButton(
+                                                            title:
+                                                                S
+                                                                    .of(context)
+                                                                    .conttinue,
+                                                          ),
+                                                        ),
+                                                        Gap(
+                                                          screenHeight * 0.03,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              S
+                                                                  .of(context)
+                                                                  .didnotReciveEmail,
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white
+                                                                    .withOpacity(
+                                                                      0.3,
+                                                                    ),
+                                                                fontSize: 16,
+                                                              ),
+                                                            ),
+                                                            GestureDetector(
+                                                              onTap: () {
+                                                                BlocProvider.of<
+                                                                  ForgetPasswordCubit
+                                                                >(
+                                                                  context,
+                                                                ).forgetPassword(
+                                                                  email:
+                                                                      widget
+                                                                          .email,
+                                                                );
+                                                              },
+                                                              child: CustomText(
+                                                                txt:
+                                                                    S
+                                                                        .of(
+                                                                          context,
+                                                                        )
+                                                                        .resendCode,
+                                                                size: 16,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.black
-                                                          .withOpacity(0.25),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                  ),
-                                                  focusedPinTheme: PinTheme(
-                                                    width: 50,
-                                                    height: 50,
-                                                    textStyle: const TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade200,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      border: Border.all(
-                                                          color: Colors.blue),
-                                                    ),
-                                                  ),
-                                                  submittedPinTheme: PinTheme(
-                                                    width: 50,
-                                                    height: 50,
-                                                    textStyle: const TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white
-                                                          .withOpacity(0.1),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      border: Border.all(
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Gap(screenHeight * 0.05),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    BlocProvider.of<
-                                                                CheckOtpCubit>(
-                                                            context)
-                                                        .checkCode(
-                                                            email: widget.email,
-                                                            code: otpController
-                                                                .text);
-                                                  },
-                                                  child: CustomButton(
-                                                      title: S
-                                                          .of(context)
-                                                          .conttinue),
-                                                ),
-                                                Gap(screenHeight * 0.03),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      S
-                                                          .of(context)
-                                                          .didnotReciveEmail,
-                                                      style: TextStyle(
-                                                        color: Colors.white
-                                                            .withOpacity(0.3),
-                                                        fontSize: 16,
-                                                      ),
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () {
-                                                        BlocProvider.of<
-                                                                    ForgetPasswordCubit>(
-                                                                context)
-                                                            .forgetPassword(
-                                                                email: widget
-                                                                    .email);
-                                                      },
-                                                      child: CustomText(
-                                                          txt: S
-                                                              .of(context)
-                                                              .resendCode,
-                                                          size: 16),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
                                           ),
                                         ),
                                       ),
@@ -304,6 +360,56 @@ class _OtpViewState extends State<OtpView> {
             },
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildShimmerLoading(double screenHeight) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: ListView(
+        children: [
+          Gap(screenHeight * 0.03),
+          Container(
+            width: 200,
+            height: 30,
+            color: Colors.white,
+            margin: const EdgeInsets.symmetric(horizontal: 70),
+          ),
+          Gap(screenHeight * 0.03),
+          Container(
+            width: 182,
+            height: 150,
+            color: Colors.white,
+            margin: const EdgeInsets.symmetric(horizontal: 80),
+          ),
+          Gap(screenHeight * 0.03),
+          Container(width: double.infinity, height: 60, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              6,
+              (index) => Container(
+                width: 50,
+                height: 50,
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+          ),
+          Gap(screenHeight * 0.05),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          Gap(screenHeight * 0.03),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Container(width: 200, height: 20, color: Colors.white)],
+          ),
+        ],
       ),
     );
   }

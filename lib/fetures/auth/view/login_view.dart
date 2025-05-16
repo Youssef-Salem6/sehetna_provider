@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
 import 'package:sehetne_provider/core/authPassField.dart';
@@ -89,13 +90,9 @@ class _LoginViewState extends State<LoginView> {
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: RadialGradient(
-                      center: Alignment.center, // Center the gradient
+                      center: Alignment.center,
                       colors: bgColorList,
-                      stops: [
-                        0.05,
-                        0.6,
-                        3,
-                      ], // Adjust the stops for smooth transitions
+                      stops: [0.05, 0.6, 3],
                     ),
                   ),
                   child: Padding(
@@ -115,22 +112,15 @@ class _LoginViewState extends State<LoginView> {
                             ],
                           ),
                           Gap(screenHeight * 0.06),
-                          // Blurred Container
                           Center(
                             child: ClipRect(
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 6,
-                                  sigmaY: 6,
-                                ), // Adjust blur intensity
+                                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
                                 child: Container(
                                   width: screenWidth * 0.88,
                                   decoration: BoxDecoration(
                                     color: Colors.black.withOpacity(0.2),
-                                    // Semi-transparent background
-                                    borderRadius: BorderRadius.circular(
-                                      8,
-                                    ), // Rounded corners
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
@@ -138,180 +128,220 @@ class _LoginViewState extends State<LoginView> {
                                       key: _formKey,
                                       child: SizedBox(
                                         height: screenHeight * 0.685,
-                                        child: ListView(
-                                          children: [
-                                            const Gap(10),
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: CustomText(
-                                                txt: S.of(context).loginTitle,
-                                                size: 24,
-                                              ),
-                                            ),
-                                            Gap(screenHeight * 0.04),
-                                            CustomText(
-                                              txt: S.of(context).email,
-                                              size: 16,
-                                            ),
-                                            const Gap(12),
-                                            AuthTextField(
-                                              controller: emailController,
-                                              hint: S.of(context).email,
-                                              type: TextInputType.emailAddress,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return S
-                                                      .of(context)
-                                                      .embtyEmailWarning;
-                                                }
-                                                if (!RegExp(
-                                                  r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}',
-                                                ).hasMatch(value)) {
-                                                  return S
-                                                      .of(context)
-                                                      .inValidMailWarning;
-                                                }
-                                                return null;
-                                              },
-                                              backColor: Colors.white,
-                                            ),
-                                            const Gap(25),
-                                            CustomText(
-                                              txt: S.of(context).Password,
-                                              size: 16,
-                                            ),
-                                            const Gap(12),
-                                            AuthPassField(
-                                              controller: passwordController,
-                                              hint: S.of(context).Password,
-                                              type: TextInputType.emailAddress,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return S
-                                                      .of(context)
-                                                      .embtyPasswordWarning;
-                                                }
-                                                if (value.length < 6) {
-                                                  return S
-                                                      .of(context)
-                                                      .shortPasswordWarning;
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                            const Gap(12),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder:
-                                                            (context) =>
-                                                                const ForgetPasswordView(),
+                                        child:
+                                            state is LoginLoading
+                                                ? _buildShimmerLoading(
+                                                  screenHeight,
+                                                )
+                                                : ListView(
+                                                  children: [
+                                                    const Gap(10),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: CustomText(
+                                                        txt:
+                                                            S
+                                                                .of(context)
+                                                                .loginTitle,
+                                                        size: 24,
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .ForgetPassword,
-                                                    style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      decoration:
-                                                          TextDecoration
-                                                              .underline,
-                                                      decorationColor:
-                                                          Colors.white,
                                                     ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const Gap(30),
-                                            GestureDetector(
-                                              onTap: () {
-                                                if (_formKey.currentState!
-                                                    .validate()) {
-                                                  BlocProvider.of<LoginCubit>(
-                                                    context,
-                                                  ).login(
-                                                    emailController.text,
-                                                    passwordController.text,
-                                                  );
-                                                }
-                                              },
-                                              child: CustomButton(
-                                                title: S.of(context).login,
-                                              ),
-                                            ),
-                                            const Gap(50),
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: CustomText(
-                                                txt: S.of(context).orLoginWith,
-                                                size: 16,
-                                              ),
-                                            ),
-                                            const Gap(20),
-                                            const Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                CustomIcon(
-                                                  image:
-                                                      "assets/images/akar-icons_google-contained-fill.svg",
-                                                ),
-                                                CustomIcon(
-                                                  image:
-                                                      "assets/images/appleLogo.svg",
-                                                ),
-                                                CustomIcon(
-                                                  image:
-                                                      "assets/images/faceBookLogo.svg",
-                                                ),
-                                              ],
-                                            ),
-                                            const Gap(30),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  S.of(context).dontHaveAccount,
-                                                  style: TextStyle(
-                                                    color: Colors.white
-                                                        .withOpacity(0.3),
-                                                    fontSize: 16,
-                                                  ),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder:
-                                                            (context) =>
-                                                                const RegisterView(),
+                                                    Gap(screenHeight * 0.04),
+                                                    CustomText(
+                                                      txt: S.of(context).email,
+                                                      size: 16,
+                                                    ),
+                                                    const Gap(12),
+                                                    AuthTextField(
+                                                      controller:
+                                                          emailController,
+                                                      hint: S.of(context).email,
+                                                      type:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      validator: (value) {
+                                                        if (value == null ||
+                                                            value.isEmpty) {
+                                                          return S
+                                                              .of(context)
+                                                              .embtyEmailWarning;
+                                                        }
+                                                        if (!RegExp(
+                                                          r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}',
+                                                        ).hasMatch(value)) {
+                                                          return S
+                                                              .of(context)
+                                                              .inValidMailWarning;
+                                                        }
+                                                        return null;
+                                                      },
+                                                      backColor: Colors.white,
+                                                    ),
+                                                    const Gap(25),
+                                                    CustomText(
+                                                      txt:
+                                                          S
+                                                              .of(context)
+                                                              .Password,
+                                                      size: 16,
+                                                    ),
+                                                    const Gap(12),
+                                                    AuthPassField(
+                                                      controller:
+                                                          passwordController,
+                                                      hint:
+                                                          S
+                                                              .of(context)
+                                                              .Password,
+                                                      type:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      validator: (value) {
+                                                        if (value == null ||
+                                                            value.isEmpty) {
+                                                          return S
+                                                              .of(context)
+                                                              .embtyPasswordWarning;
+                                                        }
+                                                        if (value.length < 6) {
+                                                          return S
+                                                              .of(context)
+                                                              .shortPasswordWarning;
+                                                        }
+                                                        return null;
+                                                      },
+                                                    ),
+                                                    const Gap(12),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const ForgetPasswordView(),
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            S
+                                                                .of(context)
+                                                                .ForgetPassword,
+                                                            style: const TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                              decorationColor:
+                                                                  Colors.white,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Gap(30),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        if (_formKey
+                                                            .currentState!
+                                                            .validate()) {
+                                                          BlocProvider.of<
+                                                            LoginCubit
+                                                          >(context).login(
+                                                            emailController
+                                                                .text,
+                                                            passwordController
+                                                                .text,
+                                                          );
+                                                        }
+                                                      },
+                                                      child: CustomButton(
+                                                        title:
+                                                            S.of(context).login,
                                                       ),
-                                                    );
-                                                  },
-                                                  child: CustomText(
-                                                    txt: S.of(context).signUp,
-                                                    size: 16,
-                                                  ),
+                                                    ),
+                                                    const Gap(50),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: CustomText(
+                                                        txt:
+                                                            S
+                                                                .of(context)
+                                                                .orLoginWith,
+                                                        size: 16,
+                                                      ),
+                                                    ),
+                                                    const Gap(20),
+                                                    const Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        CustomIcon(
+                                                          image:
+                                                              "assets/images/akar-icons_google-contained-fill.svg",
+                                                        ),
+                                                        CustomIcon(
+                                                          image:
+                                                              "assets/images/appleLogo.svg",
+                                                        ),
+                                                        CustomIcon(
+                                                          image:
+                                                              "assets/images/faceBookLogo.svg",
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Gap(30),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          S
+                                                              .of(context)
+                                                              .dontHaveAccount,
+                                                          style: TextStyle(
+                                                            color: Colors.white
+                                                                .withOpacity(
+                                                                  0.3,
+                                                                ),
+                                                            fontSize: 16,
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        const RegisterView(),
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: CustomText(
+                                                            txt:
+                                                                S
+                                                                    .of(context)
+                                                                    .signUp,
+                                                            size: 16,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
                                       ),
                                     ),
                                   ),
@@ -328,6 +358,61 @@ class _LoginViewState extends State<LoginView> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildShimmerLoading(double screenHeight) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: ListView(
+        children: [
+          const Gap(10),
+          Container(width: 200, height: 30, color: Colors.white),
+          Gap(screenHeight * 0.04),
+          Container(width: 100, height: 20, color: Colors.white),
+          const Gap(12),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          const Gap(25),
+          Container(width: 100, height: 20, color: Colors.white),
+          const Gap(12),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          const Gap(12),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(width: 150, height: 20, color: Colors.white),
+          ),
+          const Gap(30),
+          Container(width: double.infinity, height: 50, color: Colors.white),
+          const Gap(50),
+          Container(
+            width: 150,
+            height: 20,
+            color: Colors.white,
+            margin: const EdgeInsets.symmetric(horizontal: 100),
+          ),
+          const Gap(20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              3,
+              (index) => Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ),
+          const Gap(30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Container(width: 200, height: 20, color: Colors.white)],
+          ),
+        ],
       ),
     );
   }
