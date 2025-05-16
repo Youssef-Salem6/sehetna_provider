@@ -3,20 +3,22 @@ class Requestdetailsmodel {
   List? services;
   String? totalPrice, status, createdAt;
   String? customerId, customerImage, customerName, customerAge;
-  String? customerPhone, customerGender;
+  String? customerPhone, customerGender, location;
 
-  Requestdetailsmodel(
-      {required this.createdAt,
-      required this.customerAge,
-      required this.customerGender,
-      required this.customerId,
-      required this.customerImage,
-      required this.customerName,
-      required this.customerPhone,
-      required this.requestId,
-      required this.services,
-      required this.status,
-      required this.totalPrice});
+  Requestdetailsmodel({
+    required this.createdAt,
+    required this.customerAge,
+    required this.customerGender,
+    required this.customerId,
+    required this.customerImage,
+    required this.customerName,
+    required this.customerPhone,
+    required this.requestId,
+    required this.services,
+    required this.status,
+    required this.totalPrice,
+    required this.location,
+  });
 
   Requestdetailsmodel.fromJson({required Map json}) {
     requestId = json["id"].toString();
@@ -31,5 +33,6 @@ class Requestdetailsmodel {
     customerAge = customerData["age"].toString();
     customerPhone = customerData["phone"];
     customerGender = customerData["gender"];
+    location = json["location"]["google_maps_link"];
   }
 }

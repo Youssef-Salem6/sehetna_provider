@@ -7,6 +7,7 @@ import 'package:sehetne_provider/constants/apis.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/fetures/home/manager/RequestDetails/request_details_cubit.dart';
 import 'package:sehetne_provider/fetures/home/models/requestDetailsModel.dart';
+import 'package:sehetne_provider/fetures/home/services/location_service.dart';
 import 'package:sehetne_provider/fetures/home/view/create_complaint_view.dart';
 import 'package:sehetne_provider/fetures/home/view/request_services_view.dart';
 import 'package:sehetne_provider/fetures/home/view/widgets/Request_details_row.dart';
@@ -286,7 +287,12 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
                               borderRadius: BorderRadius.circular(16),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            LocationService.openMapWithUrl(
+                              locationUrl: request.location!,
+                              context: context,
+                            );
+                          },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
