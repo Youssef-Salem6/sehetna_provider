@@ -13,7 +13,6 @@ String requestsBase = "$baseUrl/requests";
 String imagesBaseUrl = "https://api.sehtnaa.com/storage";
 
 //Auth
-
 String registerApi = "$authBaseIrl/register";
 String logOutApi = "$authBaseIrl/logout";
 String loginApi = "$authBaseIrl/login";
@@ -22,7 +21,6 @@ String otpApi = "$resetPasswordBase/verify-code";
 String resetPasswordApi = "$resetPasswordBase/reset";
 
 //provider
-
 String uploadDocsApi = "$providerBase/upload-document";
 String requiredDocsApi = "$providerBase/required-documents";
 String decumentsStatusApi = "$providerBase/document-status";
@@ -32,6 +30,7 @@ String getAnalyticsApi = "$providerBase/analytics";
 String changeStatusApi = "$providerBase/availability";
 String acceptRequestApi = "$providerBase/accept";
 String completeRequestApi = "$providerBase/complete";
+String updateFcmTokenApi = "$providerBase/update-fcm-token";
 
 String updateProfileApi = "$userBase/update-profile";
 String updateProfileImageApi = "$userBase/update-profile-image";

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sehetne_provider/fetures/auth/manager/documentsStatus/documents_status_cubit.dart';
 import 'package:sehetne_provider/fetures/auth/manager/requiredDocuments/required_documents_cubit.dart';
+import 'package:sehetne_provider/fetures/auth/manager/updateFcmToken/update_fcm_token_cubit.dart';
 import 'package:sehetne_provider/fetures/auth/manager/uploadDecuments/upload_documents_cubit.dart';
 import 'package:sehetne_provider/fetures/home/manager/RequestDetails/request_details_cubit.dart';
 import 'package:sehetne_provider/fetures/home/manager/ongoingRequests/ongoing_requests_cubit.dart';
@@ -40,6 +41,7 @@ void main(List<String> args) async {
         BlocProvider(create: (context) => OngoingRequestsCubit()),
         BlocProvider(create: (context) => GetComplaintsCubit()),
         BlocProvider(create: (context) => GetRequestsCubit()),
+        BlocProvider(create: (context) => UpdateFcmTokenCubit()),
         BlocProvider(
           create:
               (context) =>
