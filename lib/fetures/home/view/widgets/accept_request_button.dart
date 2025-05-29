@@ -4,6 +4,7 @@ import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/fetures/home/manager/acceptRequest/accept_request_cubit.dart';
 import 'package:sehetne_provider/fetures/home/manager/completeRequest/complete_request_cubit.dart';
 import 'package:sehetne_provider/fetures/home/manager/ongoingRequests/ongoing_requests_cubit.dart';
+import 'package:sehetne_provider/fetures/home/view/widgets/cost_dialog.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
 import 'package:sehetne_provider/main.dart';
 import 'package:shimmer/shimmer.dart';
@@ -96,9 +97,18 @@ class AcceptRequestButton extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (status == "pending") {
-                          BlocProvider.of<AcceptRequestCubit>(
-                            context,
-                          ).acceptRequest(requestId: requestId);
+                          if (pref.getString("provider_type") ==
+                              "organizational") {
+                            showDialog(
+                              context: context,
+                              builder:
+                                  (context) => CostDialog(requestId: requestId),
+                            );
+                          } else {
+                            BlocProvider.of<AcceptRequestCubit>(
+                              context,
+                            ).acceptRequest(requestId: requestId, coast: "");
+                          }
                         } else if (status == "accepted") {
                           BlocProvider.of<CompleteRequestCubit>(
                             context,

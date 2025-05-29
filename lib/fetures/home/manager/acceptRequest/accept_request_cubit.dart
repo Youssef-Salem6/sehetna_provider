@@ -8,10 +8,14 @@ part 'accept_request_state.dart';
 
 class AcceptRequestCubit extends Cubit<AcceptRequestState> {
   AcceptRequestCubit() : super(AcceptRequestInitial());
-  acceptRequest({required String requestId}) async {
+  acceptRequest({required String requestId, required String coast}) async {
     emit(AcceptRequestLoading());
     Uri url = Uri.parse("$acceptRequestApi/$requestId");
-    var response = await http.post(url, headers: header);
+    var response = await http.post(
+      url,
+      headers: header,
+      body: {"price": coast},
+    );
     String message = jsonDecode(response.body)["message"];
     if (response.statusCode == 200) {
       emit(AcceptRequestSuccess(message: message));

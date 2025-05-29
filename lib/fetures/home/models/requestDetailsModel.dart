@@ -4,6 +4,7 @@ class Requestdetailsmodel {
   String? totalPrice, status, createdAt;
   String? customerId, customerImage, customerName, customerAge;
   String? customerPhone, customerGender, location;
+  List? requirements;
 
   Requestdetailsmodel({
     required this.createdAt,
@@ -18,6 +19,7 @@ class Requestdetailsmodel {
     required this.status,
     required this.totalPrice,
     required this.location,
+    required this.requirements,
   });
 
   Requestdetailsmodel.fromJson({required Map json}) {
@@ -34,5 +36,6 @@ class Requestdetailsmodel {
     customerPhone = customerData["phone"];
     customerGender = customerData["gender"];
     location = json["location"]["google_maps_link"];
+    requirements = json["requirements"];
   }
 }

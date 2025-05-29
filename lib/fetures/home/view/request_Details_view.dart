@@ -10,6 +10,7 @@ import 'package:sehetne_provider/fetures/home/models/requestDetailsModel.dart';
 import 'package:sehetne_provider/fetures/home/services/location_service.dart';
 import 'package:sehetne_provider/fetures/home/view/create_complaint_view.dart';
 import 'package:sehetne_provider/fetures/home/view/request_services_view.dart';
+import 'package:sehetne_provider/fetures/home/view/requirements_view.dart';
 import 'package:sehetne_provider/fetures/home/view/widgets/Request_details_row.dart';
 import 'package:sehetne_provider/fetures/home/view/widgets/accept_request_button.dart';
 import 'package:sehetne_provider/generated/l10n.dart';
@@ -50,74 +51,89 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
         child: Shimmer.fromColors(
           baseColor: Colors.grey[300]!,
           highlightColor: Colors.grey[100]!,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Image placeholder
-              Container(
-                width: size.width * 0.94,
-                height: size.height * 0.45,
-                color: Colors.white,
-              ),
-              Gap(size.height * 0.01),
-              // Name and patient text placeholder
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(width: 150, height: 20, color: Colors.white),
-                  const Gap(4),
-                  Container(width: 80, height: 16, color: Colors.white),
-                ],
-              ),
-              const Spacer(),
-              // Details rows placeholder
-              Column(
-                children: List.generate(
-                  6,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6.0),
-                    child: Row(
-                      children: [
-                        Container(width: 20, height: 20, color: Colors.white),
-                        const Gap(8),
-                        Container(width: 100, height: 16, color: Colors.white),
-                        const Spacer(),
-                        Container(
-                          width: size.width * 0.6,
-                          height: 16,
-                          color: Colors.white,
-                        ),
-                      ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Image placeholder
+                Container(
+                  width: size.width * 0.94,
+                  height: size.height * 0.45,
+                  color: Colors.white,
+                ),
+                Gap(size.height * 0.01),
+                // Name and patient text placeholder
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(width: 150, height: 20, color: Colors.white),
+                    const Gap(4),
+                    Container(width: 80, height: 16, color: Colors.white),
+                  ],
+                ),
+                SizedBox(height: size.height * 0.03),
+                // Details rows placeholder
+                Column(
+                  children: List.generate(
+                    6,
+                    (index) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 6.0),
+                      child: Row(
+                        children: [
+                          Container(width: 20, height: 20, color: Colors.white),
+                          const Gap(8),
+                          Container(
+                            width: 100,
+                            height: 16,
+                            color: Colors.white,
+                          ),
+                          const Spacer(),
+                          Container(
+                            width: size.width * 0.6,
+                            height: 16,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const Spacer(),
-              // Buttons placeholder
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
+                SizedBox(height: size.height * 0.03),
+                // Buttons placeholder
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
                     ),
-                  ),
-                  const Gap(10),
-                  Expanded(
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
+                    const Gap(10),
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
                     ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -157,6 +173,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
           );
         }
 
+        // Success state UI
         return Scaffold(
           appBar: AppBar(
             iconTheme: const IconThemeData(color: Colors.white),
@@ -168,203 +185,236 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        border: Border.all(color: kPrimaryColor, width: 4),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: Image(
-                          image: NetworkImage(
-                            "$imagesBaseUrl/${request.customerImage}",
-                          ),
-                          width: size.width * 0.9,
-                          height: size.height * 0.4,
-                          fit: BoxFit.fill,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Profile image
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          border: Border.all(color: kPrimaryColor, width: 4),
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(size.height * 0.01),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      request.customerName!,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      S.of(context).patient,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: kPrimaryColor.withOpacity(0.6),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Column(
-                  children: [
-                    RequestDetailsRow(
-                      image: "assets/images/Icons/Vector.svg",
-                      title: S.of(context).date,
-                      value: DateFormat(
-                        'MMMM d, h:mm a',
-                      ).format(DateTime.parse(request.createdAt!)),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        if (request.services!.length > 1) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => RequestServicesView(
-                                    services: request.services!,
-                                  ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image(
+                            image: NetworkImage(
+                              "$imagesBaseUrl/${request.customerImage}",
                             ),
-                          );
-                        }
-                      },
-                      child: RequestDetailsRow(
-                        image: "assets/images/Icons/doctorBag.svg",
-                        title: S.of(context).serviceType,
-                        value:
-                            request.services!.length == 1
-                                ? request
-                                    .services![0]["name"][Localizations.localeOf(
-                                  context,
-                                ).languageCode]
-                                : "${request.services![0]["name"][Localizations.localeOf(context).languageCode]} +${request.services!.length - 1}",
-                      ),
-                    ),
-                    RequestDetailsRow(
-                      image: "assets/images/Icons/fees.svg",
-                      title: S.of(context).totalFees,
-                      value: "${request.totalPrice} EGP",
-                    ),
-                    RequestDetailsRow(
-                      image: "assets/images/Icons/phone.svg",
-                      title: S.of(context).callPatient,
-                      value: request.customerPhone!,
-                    ),
-                    RequestDetailsRow(
-                      image: "assets/images/Icons/genderIcon.svg",
-                      title: S.of(context).gender,
-                      value: request.customerGender!,
-                    ),
-                    RequestDetailsRow(
-                      image: "assets/images/Icons/ageIcon.svg",
-                      title: S.of(context).age,
-                      value: request.customerAge!,
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Visibility(
-                      visible: request.status! == "accepted",
-                      child: Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: kPrimaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          onPressed: () {
-                            LocationService.openMapWithUrl(
-                              locationUrl: request.location!,
-                              context: context,
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                "assets/images/Icons/whiteLocation.svg",
-                              ),
-                              const Gap(5),
-                              Text(
-                                S.of(context).location,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
+                            width: size.width * 0.9,
+                            height: size.height * 0.4,
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
-                    ),
-                    const Gap(10),
-                    Expanded(
-                      child: Visibility(
-                        visible: request.status != "pending",
-                        child: ElevatedButton(
-                          onPressed: () {
+                    ],
+                  ),
+                  Gap(size.height * 0.01),
+
+                  // Customer name and patient label
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        request.customerName!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        S.of(context).patient,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: kPrimaryColor.withOpacity(0.6),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: size.height * 0.03),
+
+                  // Request details
+                  Column(
+                    children: [
+                      RequestDetailsRow(
+                        image: "assets/images/Icons/Vector.svg",
+                        title: S.of(context).date,
+                        value: DateFormat(
+                          'MMMM d, h:mm a',
+                        ).format(DateTime.parse(request.createdAt!)),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (request.services!.length > 1) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder:
-                                    (context) => CreateComplaintView(
-                                      requestId: request.requestId!,
+                                    (context) => RequestServicesView(
+                                      services: request.services!,
+                                    ),
+                              ),
+                            );
+                          }
+                        },
+                        child: RequestDetailsRow(
+                          image: "assets/images/Icons/doctorBag.svg",
+                          title: S.of(context).serviceType,
+                          value:
+                              request.services!.length == 1
+                                  ? request
+                                      .services![0]["name"][Localizations.localeOf(
+                                    context,
+                                  ).languageCode]
+                                  : "${request.services![0]["name"][Localizations.localeOf(context).languageCode]} +${request.services!.length - 1}",
+                        ),
+                      ),
+                      RequestDetailsRow(
+                        image: "assets/images/Icons/fees.svg",
+                        title: S.of(context).totalFees,
+                        value: "${request.totalPrice} EGP",
+                      ),
+                      RequestDetailsRow(
+                        image: "assets/images/Icons/phone.svg",
+                        title: S.of(context).callPatient,
+                        value: request.customerPhone!,
+                      ),
+                      RequestDetailsRow(
+                        image: "assets/images/Icons/genderIcon.svg",
+                        title: S.of(context).gender,
+                        value: request.customerGender!,
+                      ),
+                      RequestDetailsRow(
+                        image: "assets/images/Icons/ageIcon.svg",
+                        title: S.of(context).age,
+                        value: request.customerAge!,
+                      ),
+                      Visibility(
+                        visible: request.requirements!.isNotEmpty,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => RequirementsView(
+                                      requirements: request.requirements!,
                                     ),
                               ),
                             );
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: kSecondaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                "assets/images/Icons/whiteComplaint.svg",
-                              ),
-                              const Gap(5),
-                              Text(
-                                S.of(context).complaint,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
+                          child: RequestDetailsRow(
+                            image:
+                                "assets/images/Icons/material-symbols_docs.svg",
+                            title: "Docs",
+                            value: request.requirements!.length.toString(),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Visibility(
-                  visible:
-                      request.status == "pending" ||
-                      request.status == "accepted",
-                  child: AcceptRequestButton(
-                    status: request.status!,
-                    requestId: request.requestId.toString(),
+                    ],
                   ),
-                ),
-              ],
+                  SizedBox(height: size.height * 0.03),
+
+                  // Action buttons
+                  Row(
+                    children: [
+                      Visibility(
+                        visible: request.status! == "accepted",
+                        child: Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: kPrimaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            onPressed: () {
+                              LocationService.openMapWithUrl(
+                                locationUrl: request.location!,
+                                context: context,
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/images/Icons/whiteLocation.svg",
+                                ),
+                                const Gap(5),
+                                Text(
+                                  S.of(context).location,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Gap(10),
+                      Expanded(
+                        child: Visibility(
+                          visible: request.status != "pending",
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => CreateComplaintView(
+                                        requestId: request.requestId!,
+                                      ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: kSecondaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/images/Icons/whiteComplaint.svg",
+                                ),
+                                const Gap(5),
+                                Text(
+                                  S.of(context).complaint,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Visibility(
+                    visible:
+                        request.status == "pending" ||
+                        request.status == "accepted",
+                    child: AcceptRequestButton(
+                      status: request.status!,
+                      requestId: request.requestId.toString(),
+                    ),
+                  ),
+                  const SizedBox(height: 16), // Add bottom padding
+                ],
+              ),
             ),
           ),
         );
