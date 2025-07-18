@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
-import 'package:sehetne_provider/core/custom_icon.dart';
+
 import 'package:sehetne_provider/core/custom_text.dart';
 import 'package:sehetne_provider/fetures/auth/view/register_second_level.dart';
 import 'package:sehetne_provider/fetures/auth/view/widgets/register_fields_list.dart';

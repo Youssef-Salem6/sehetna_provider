@@ -9,7 +9,7 @@ import 'package:sehetne_provider/core/Colors.dart';
 import 'package:sehetne_provider/core/Custom_Button.dart';
 import 'package:sehetne_provider/core/authPassField.dart';
 import 'package:sehetne_provider/core/authTextField.dart';
-import 'package:sehetne_provider/core/custom_icon.dart';
+
 import 'package:sehetne_provider/core/custom_text.dart';
 import 'package:sehetne_provider/core/nav_view.dart';
 import 'package:sehetne_provider/fetures/auth/manager/login/login_cubit.dart';
