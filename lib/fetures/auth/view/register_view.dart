@@ -101,7 +101,7 @@ class _RegisterViewState extends State<RegisterView> {
                                         ),
                                         Gap(screenHeight * 0.02),
                                         SizedBox(
-                                          height: screenHeight * 0.32,
+                                          height: screenHeight * 0.4,
                                           child: RegisterFieldsList(
                                             controllers: {
                                               "firstNameController":
@@ -169,32 +169,32 @@ class _RegisterViewState extends State<RegisterView> {
                                           ),
                                         ),
                                         const Gap(50),
-                                        Align(
-                                          alignment: Alignment.center,
-                                          child: CustomText(
-                                            txt: S.of(context).signUpWith,
-                                            size: 16,
-                                          ),
-                                        ),
-                                        const Gap(20),
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            CustomIcon(
-                                              image:
-                                                  "assets/images/akar-icons_google-contained-fill.svg",
-                                            ),
-                                            CustomIcon(
-                                              image:
-                                                  "assets/images/appleLogo.svg",
-                                            ),
-                                            CustomIcon(
-                                              image:
-                                                  "assets/images/faceBookLogo.svg",
-                                            ),
-                                          ],
-                                        ),
+                                        // Align(
+                                        //   alignment: Alignment.center,
+                                        //   child: CustomText(
+                                        //     txt: S.of(context).signUpWith,
+                                        //     size: 16,
+                                        //   ),
+                                        // ),
+                                        // const Gap(20),
+                                        // const Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.spaceEvenly,
+                                        //   children: [
+                                        //     CustomIcon(
+                                        //       image:
+                                        //           "assets/images/akar-icons_google-contained-fill.svg",
+                                        //     ),
+                                        //     CustomIcon(
+                                        //       image:
+                                        //           "assets/images/appleLogo.svg",
+                                        //     ),
+                                        //     CustomIcon(
+                                        //       image:
+                                        //           "assets/images/faceBookLogo.svg",
+                                        //     ),
+                                        //   ],
+                                        // ),
                                         const Gap(30),
                                         Row(
                                           mainAxisAlignment:

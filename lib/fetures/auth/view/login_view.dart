@@ -301,39 +301,39 @@ class _LoginViewState extends State<LoginView> {
                                                                     .login,
                                                           ),
                                                         ),
-                                                        const Gap(50),
-                                                        Align(
-                                                          alignment:
-                                                              Alignment.center,
-                                                          child: CustomText(
-                                                            txt:
-                                                                S
-                                                                    .of(context)
-                                                                    .orLoginWith,
-                                                            size: 16,
-                                                          ),
-                                                        ),
-                                                        const Gap(20),
-                                                        const Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          children: [
-                                                            CustomIcon(
-                                                              image:
-                                                                  "assets/images/akar-icons_google-contained-fill.svg",
-                                                            ),
-                                                            CustomIcon(
-                                                              image:
-                                                                  "assets/images/appleLogo.svg",
-                                                            ),
-                                                            CustomIcon(
-                                                              image:
-                                                                  "assets/images/faceBookLogo.svg",
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        const Gap(30),
+                                                        const Gap(100),
+                                                        // Align(
+                                                        //   alignment:
+                                                        //       Alignment.center,
+                                                        //   child: CustomText(
+                                                        //     txt:
+                                                        //         S
+                                                        //             .of(context)
+                                                        //             .orLoginWith,
+                                                        //     size: 16,
+                                                        //   ),
+                                                        // ),
+                                                        // const Gap(20),
+                                                        // const Row(
+                                                        //   mainAxisAlignment:
+                                                        //       MainAxisAlignment
+                                                        //           .spaceEvenly,
+                                                        //   children: [
+                                                        //     CustomIcon(
+                                                        //       image:
+                                                        //           "assets/images/akar-icons_google-contained-fill.svg",
+                                                        //     ),
+                                                        //     CustomIcon(
+                                                        //       image:
+                                                        //           "assets/images/appleLogo.svg",
+                                                        //     ),
+                                                        //     CustomIcon(
+                                                        //       image:
+                                                        //           "assets/images/faceBookLogo.svg",
+                                                        //     ),
+                                                        //   ],
+                                                        // ),
+                                                        // const Gap(30),
                                                         Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
